@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Super Cool Shops</string>
+    <string name="preferencias">Preferences</string>
+    <string name="titulo_preferencias_idioma">Current Language</string>
+    <string name="ingles">English</string>
+    <string name="español">Spanish</string>
+    <string name="titulo_dialogo_preferencias_idioma">Choose a language</string>
+    <string name="resumen_preferencias_idioma">Select the language of the app</string>
+</resources>
