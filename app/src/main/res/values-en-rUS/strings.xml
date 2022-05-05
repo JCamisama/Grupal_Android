@@ -7,4 +7,13 @@
     <string name="español">Spanish</string>
     <string name="titulo_dialogo_preferencias_idioma">Choose a language</string>
     <string name="resumen_preferencias_idioma">Select the language of the app</string>
+    <string name="usuario">User</string>
+    <string name="contraseña">Password</string>
+    <string name="login">Login</string>
+    <string name="link_registro_texto"><u>Not registered? Sign up here</u></string>
+    <string name="meter_usuario">Enter a username</string>
+    <string name="meter_contraseña">Enter a password</string>
+    <string name="repetir_contraseña">Repeat the password</string>
+    <string name="registrar">Register</string>
+    <string name="hecho">Done</string>
 </resources>

@@ -6,4 +6,13 @@
     <string name="español">Español</string>
     <string name="titulo_dialogo_preferencias_idioma">Elige un idioma</string>
     <string name="resumen_preferencias_idioma">Selecciona el idioma de la aplicación</string>
+    <string name="usuario">Usuario</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="login">Login</string>
+    <string name="link_registro_texto"><u>¿No estás registrado? puedes hacerlo aquí</u></string>
+    <string name="meter_usuario">Introduce un usuario</string>
+    <string name="meter_contraseña">Introduce una contraseña</string>
+    <string name="repetir_contraseña">Repite la contraseña</string>
+    <string name="registrar">Registrarse</string>
+    <string name="hecho">Hecho</string>
 </resources>
