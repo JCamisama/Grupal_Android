@@ -16,4 +16,8 @@
     <string name="repetir_contraseña">Repeat the password</string>
     <string name="registrar">Register</string>
     <string name="hecho">Done</string>
+    <string name="credenciales_incorrectas">Wrong credentials. Are you registered?</string>
+    <string name="no_campos_vacios">No empty fields allowed!</string>
+    <string name="contraseñas_no_concuerdan">Passwords do not match. Please, make sure that they do.</string>
+    <string name="usuario_ya_existe">This username is taken. Please, choose one that\'s still available.</string>
 </resources>

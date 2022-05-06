@@ -16,4 +16,8 @@
     <string name="repetir_contraseña">Repite la contraseña</string>
     <string name="registrar">Registrarse</string>
     <string name="hecho">Hecho</string>
+    <string name="credenciales_incorrectas">Las credenciales son incorrectas. ¿Estás registrado?</string>
+    <string name="no_campos_vacios">¡No se puede dejar ningún campo vacío!</string>
+    <string name="contraseñas_no_concuerdan">Las contraseñas no coinciden. Por favor, asegúrate de que lo hacen.</string>
+    <string name="usuario_ya_existe">Este nombre de usuario está cogido. Por favor, elige uno que todavía esté disponible.</string>
 </resources>

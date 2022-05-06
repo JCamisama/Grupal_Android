@@ -1,10 +1,14 @@
 package com.example.grupal_android;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.work.Data;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
 
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -13,6 +17,9 @@ import com.example.grupal_android.PreferencesActivity;
 import com.example.grupal_android.managers.CustomPreferencesManager;
 import com.example.grupal_android.managers.LanguageManager;
 import com.example.grupal_android.managers.SessionManager;
+import com.example.grupal_android.models.User;
+import com.example.grupal_android.workers.AllUsersGetter;
+import com.example.grupal_android.workers.UserInsertWorker;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,8 +36,10 @@ public class MainActivity extends AppCompatActivity {
         this.languageManager = LanguageManager.getInstance(MainActivity.this);
         this.preferencesManager = CustomPreferencesManager.getInstance(MainActivity.this);
         this.sessionManager = SessionManager.getInstance(MainActivity.this);
-
         this.manageCurrentAppLanguage();
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
     }
 
 
@@ -89,4 +98,46 @@ public class MainActivity extends AppCompatActivity {
         this.currentActivityLanguage = this.languageManager.getCurrentLanguageCodeFromPreferences();
     }
 
+
+    /**
+     * Obtiene el usuario especificado por el username
+     */
+    public User getUser(String pUsername) {
+        AllUsersGetter usersGetter = new AllUsersGetter();
+
+        return usersGetter.getUser(pUsername);
+    }
+
+
+    /**
+     * Añade un nuevo usuario a la base de datos.
+     */
+    public void addUser(String pUsername, String pPassword) {
+        Data datos = new Data.Builder().putString("username",pUsername).putString("password", pPassword)
+                .build();
+        OneTimeWorkRequest otwr = new OneTimeWorkRequest.Builder(UserInsertWorker.class).setInputData(datos).build();
+        WorkManager.getInstance(MainActivity.this).enqueue(otwr);
+    }
+
+
+    /**
+     * Comprueba si las credenciales introducidas son correctas.
+     */
+    public boolean checkIfUserCredentialsAreCorrect(String pUsername, String pPassword) {
+        boolean areCredentialsCorrect = false;
+        User user = this.getUser(pUsername);
+
+        if (user != null) {
+            areCredentialsCorrect = pUsername.equals(user.getUsername())
+                    && pPassword.equals(user.getPassword());
+        }
+
+        return areCredentialsCorrect;
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }
