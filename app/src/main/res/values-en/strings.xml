@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Grupal_Android</string>
+    <string name="noPer">You have to grant the permisson of ubication to see the ubications near you</string>
+    <string name="falloUbi">The ubication have failed</string>
+</resources>

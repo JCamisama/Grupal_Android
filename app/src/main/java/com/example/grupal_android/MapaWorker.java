@@ -23,13 +23,14 @@ import java.util.ArrayList;
 public class MapaWorker extends Worker {
     public MapaWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
+
     }
 
     @NonNull
     @Override
     public Result doWork() {
         //Método que hara una llamada al php de conseguir la ubicacion de todos los usuarios registrados
-        String direccion = "http://ec2-52-56-170-196.eu-west-2.compute.amazonaws.com/midoyaga002/WEB/getmapa.php";
+        String direccion = "http://ec2-52-56-170-196.eu-west-2.compute.amazonaws.com/midoyaga002/WEB/getUbis.php";
         HttpURLConnection urlConnection;
         String tienda = getInputData().getString("tienda");
         String parametros = "tienda="+tienda;
