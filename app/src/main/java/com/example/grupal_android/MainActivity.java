@@ -100,6 +100,14 @@ public class MainActivity extends AppCompatActivity {
 
 
     /**
+     * Resetea el contenido de los inputs de la aplicación que se guardó en preferencias.
+     */
+    protected void resetUserInputFields() {
+        this.preferencesManager.clearAllInputtedTextInFields();
+    }
+
+
+    /**
      * Obtiene el usuario especificado por el username
      */
     public User getUser(String pUsername) {
