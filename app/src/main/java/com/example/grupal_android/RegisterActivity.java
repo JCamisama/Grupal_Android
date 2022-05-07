@@ -143,8 +143,7 @@ public class RegisterActivity extends MainActivity {
     private boolean checkIfUserAlreadyExists() {
         String username = this.usernameInput.getText().toString();
 
-        return false;
-//        return super.databaseManager.checkIfUserExists(username);
+        return super.checkIfUserExists(username);
     }
 
 
@@ -177,7 +176,7 @@ public class RegisterActivity extends MainActivity {
         String password = this.passwordInput.getText().toString();
 
         Log.i("RegisterActivity", "THE USER WOULD BE REGISTERED BY NOW!!!");
-//        super.databaseManager.addUser(username, password);
+        super.addUser(username, password);
     }
 
 

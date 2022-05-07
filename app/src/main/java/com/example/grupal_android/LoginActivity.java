@@ -118,8 +118,7 @@ public class LoginActivity extends MainActivity {
         String username = this.usernameInput.getText().toString();
         String password = this.passwordInput.getText().toString();
 
-        return false;
-//        return super.databaseManager.checkIfUserCredentialsAreCorrect(username, password);
+        return super.checkIfUserCredentialsAreCorrect(username, password);
     }
 
 

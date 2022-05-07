@@ -24,7 +24,7 @@ public class GlobalVariablesUtil {
 
     // Remote database PHP file URIs
     public static final String REMOTE_SERVER =  "http://ec2-52-56-170-196.eu-west-2.compute.amazonaws.com/jcagudelo001/WEB";
-    public static final String GET_USER_BY_ID_PHP = "select_user_by_username.php";
-    public static final String INSERT_USER_PHP = "insert_user.php";
+    public static final String GET_USER_BY_ID_PHP = "select_user_by_username_grupal.php";
+    public static final String INSERT_USER_PHP = "insert_user_grupal.php";
 
 }

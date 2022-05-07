@@ -136,6 +136,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Indica si un usuario existe en la base de datos.
+     */
+    public boolean checkIfUserExists(String pUsername) {
+        User user = this.getUser(pUsername);
+        boolean doesUserExist = (user != null);
+
+        return doesUserExist;
+    }
+
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
