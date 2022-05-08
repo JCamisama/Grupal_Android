@@ -17,7 +17,7 @@ public class FranquiciaListActivity extends AppCompatActivity {
 
     ListView simpleList;
     private ArrayList<String> franquiciaList = new ArrayList<String>();
-    int logos[] = {R.drawable.loli};
+    int logos[] = {R.drawable.loli, R.drawable.lolideportista, R.drawable.loligamer};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

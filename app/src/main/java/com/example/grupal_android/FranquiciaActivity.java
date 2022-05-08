@@ -20,5 +20,7 @@ public class FranquiciaActivity extends AppCompatActivity {
         TextView tx = findViewById(R.id.textView2);
         tx.setText("Soy la Franquicia " + franquicia);
 
+        //logo, tipo, nombre, descripcion
+        // botones: mapa(pasar nombre tienda), web
     }
 }

@@ -47,10 +47,13 @@ public class CustomAdapter extends BaseAdapter {
 
         Log.i("Recorrido","Paso por getView CustomAdapter");
         view = inflter.inflate(R.layout.activity_franquicia_list, null);
-        TextView pokemon = (TextView) view.findViewById(R.id.textView);
+        TextView franquicia = (TextView) view.findViewById(R.id.textView);
+        TextView tipo = (TextView) view.findViewById(R.id.tipo);
+        tipo.setText("tipo: reposteria");
         ImageView icon = (ImageView) view.findViewById(R.id.icon);
-        pokemon.setText(franquiciaList.get(i));
-        setImages(icon, pokemon.getText().toString());
+        franquicia.setText(franquiciaList.get(i));
+
+        setImages(icon, franquicia.getText().toString());
 
         return view;
     }
@@ -59,7 +62,30 @@ public class CustomAdapter extends BaseAdapter {
     private void setImages(ImageView icon, String nombre) {
 
         Log.i("Recorrido","Paso por setImages CustomAdapter");
-        icon.setImageResource(logos[0]);
+        switch (nombre){
+
+            case "Placeholder1": {
+
+                icon.setImageResource(logos[0]);
+                break;
+
+            }
+
+            case "Placeholder2": {
+
+                icon.setImageResource(logos[1]);
+                break;
+
+            }
+
+            case "Placeholder3": {
+
+                icon.setImageResource(logos[2]);
+                break;
+
+            }
+
+        }
 
     }
 
