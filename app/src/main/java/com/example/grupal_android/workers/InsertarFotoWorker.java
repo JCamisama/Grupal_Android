@@ -75,7 +75,6 @@ public class InsertarFotoWorker extends Worker {
             parametrosJSON.put("nameFranchise",nameFranchise);
             parametrosJSON.put("lat",lat);
             parametrosJSON.put("lng",lng);
-            Log.d("owo","owo"+parametrosJSON);
         } catch (JSONException e) {
             e.printStackTrace();
         }
