@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -33,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.i("MainActivity", "El peluca sappeeeeeeeeeeeeeeeeeeeeee!");
 
         this.languageManager = LanguageManager.getInstance(MainActivity.this);
         this.preferencesManager = CustomPreferencesManager.getInstance(MainActivity.this);
