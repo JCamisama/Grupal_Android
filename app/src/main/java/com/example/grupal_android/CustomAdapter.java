@@ -16,20 +16,20 @@ import java.util.ArrayList;
 
 public class CustomAdapter extends BaseAdapter {
     Context context;
-    ArrayList<String> franquiciaList;
+    FranchiseManager franquiciaList;
     int logos[];
     LayoutInflater inflter;
 
-    public CustomAdapter(Context applicationContext, ArrayList<String> pfranquiciaList, int[] plogos, Context pcontext) {
+    public CustomAdapter(Context applicationContext, int[] plogos, Context pcontext) {
         this.context = pcontext;
-        this.franquiciaList = pfranquiciaList;
+        this.franquiciaList = FranchiseManager.getInstance(this.context);
         this.logos = plogos;
         inflter = (LayoutInflater.from(applicationContext));
     }
 
     @Override
     public int getCount() {
-        return franquiciaList.size();
+        return franquiciaList.getSize();
     }
 
     @Override
@@ -49,23 +49,25 @@ public class CustomAdapter extends BaseAdapter {
         view = inflter.inflate(R.layout.activity_franquicia_list, null);
         TextView franquicia = (TextView) view.findViewById(R.id.textView);
         TextView tipo = (TextView) view.findViewById(R.id.tipo);
-        tipo.setText("tipo: reposteria");
         ImageView icon = (ImageView) view.findViewById(R.id.icon);
-        franquicia.setText(franquiciaList.get(i));
+        Franquicia fran = this.franquiciaList.getFranquicia(i);
+        franquicia.setText(fran.getNombre());
+        tipo.setText("Tipo: " + fran.getTipo());
 
-        setImages(icon, franquicia.getText().toString());
+        setImages(icon, fran);
 
         return view;
     }
 
     // Cambiar la imagen del pokemon dependiendo del nombre de este
-    private void setImages(ImageView icon, String nombre) {
+    private void setImages(ImageView icon, Franquicia fran) {
 
         Log.i("Recorrido","Paso por setImages CustomAdapter");
-        switch (nombre){
+        switch (fran.getNombre()){
 
             case "Placeholder1": {
 
+                fran.setLogo(logos[0]);
                 icon.setImageResource(logos[0]);
                 break;
 
@@ -73,6 +75,7 @@ public class CustomAdapter extends BaseAdapter {
 
             case "Placeholder2": {
 
+                fran.setLogo(logos[1]);
                 icon.setImageResource(logos[1]);
                 break;
 
@@ -80,6 +83,7 @@ public class CustomAdapter extends BaseAdapter {
 
             case "Placeholder3": {
 
+                fran.setLogo(logos[2]);
                 icon.setImageResource(logos[2]);
                 break;
 

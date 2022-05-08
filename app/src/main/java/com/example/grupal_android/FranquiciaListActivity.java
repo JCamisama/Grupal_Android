@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class FranquiciaListActivity extends AppCompatActivity {
 
     ListView simpleList;
-    private ArrayList<String> franquiciaList = new ArrayList<String>();
+    //private ArrayList<String> franquiciaList = new ArrayList<String>();
     int logos[] = {R.drawable.loli, R.drawable.lolideportista, R.drawable.loligamer};
 
     @Override
@@ -24,12 +24,12 @@ public class FranquiciaListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.franquicia_list_main);
 
-        franquiciaList.add("Placeholder1");
-        franquiciaList.add("Placeholder2");
-        franquiciaList.add("Placeholder3");
+//        franquiciaList.add("Placeholder1");
+//        franquiciaList.add("Placeholder2");
+//        franquiciaList.add("Placeholder3");
 
         simpleList = (ListView) findViewById(R.id.simpleListView);
-        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), franquiciaList, logos, this.getApplicationContext());
+        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), logos, this.getApplicationContext());
         simpleList.setAdapter(customAdapter);
 
         simpleList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -40,7 +40,7 @@ public class FranquiciaListActivity extends AppCompatActivity {
                     default: {
 
                         Intent i = new Intent(FranquiciaListActivity.this, FranquiciaActivity.class);
-                        i.putExtra("franquicia", franquiciaList.get(position));
+                        i.putExtra("franquicia", position);
                         startActivity(i);
 
                     }

@@ -17,20 +17,20 @@ public class ListView extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        Log.i("Recorrido","Paso por onOptionsItemSelected ListaPokemon para acceder a la lista de favoritos");
-        int id=item.getItemId();
-        switch (id){
-            default:{
-
-                Intent i = new Intent(this, FranquiciaActivity.class);
-                startActivity(i);
-
-            }
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//
+//        Log.i("Recorrido","Paso por onOptionsItemSelected ListaPokemon para acceder a la lista de favoritos");
+//        int id=item.getItemId();
+//        switch (id){
+//            default:{
+//
+//                Intent i = new Intent(this, FranquiciaActivity.class);
+//                startActivity(i);
+//
+//            }
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
 }
