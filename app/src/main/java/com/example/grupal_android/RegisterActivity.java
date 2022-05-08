@@ -4,6 +4,9 @@ import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+import androidx.work.Data;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +16,10 @@ import android.widget.EditText;
 
 import com.example.grupal_android.dialogs.CustomNotificationDialog;
 import com.example.grupal_android.utils.GlobalVariablesUtil;
+import com.example.grupal_android.workers.FCM_notificacionWorker;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 public class RegisterActivity extends MainActivity {
 
@@ -74,6 +81,7 @@ public class RegisterActivity extends MainActivity {
         }
         else {
             this.registerUser();
+            this.notification();
             this.setUserInPreferencesAndGoToHomePage();
         }
     }
@@ -194,6 +202,22 @@ public class RegisterActivity extends MainActivity {
         intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
+    }
+
+    private void notification(){
+        String usuario = this.usernameInput.getText().toString();
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(RegisterActivity.this,new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+
+                String newToken = instanceIdResult.getToken();
+
+                Data datos = new Data.Builder().putString("token",newToken)
+                        .putString("titulo_noti",getString(R.string.new_signup)).putString("texto_noti",getString(R.string.has_been_registered)+": "+usuario).build();
+                OneTimeWorkRequest otwr = new OneTimeWorkRequest.Builder(FCM_notificacionWorker.class).setInputData(datos).build();
+                WorkManager.getInstance(RegisterActivity.this).enqueue(otwr);
+            }
+        });
     }
 
 

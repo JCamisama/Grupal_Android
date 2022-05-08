@@ -20,4 +20,6 @@
     <string name="no_campos_vacios">No empty fields allowed!</string>
     <string name="contraseñas_no_concuerdan">Passwords do not match. Please, make sure that they do.</string>
     <string name="usuario_ya_existe">This username is taken. Please, choose one that\'s still available.</string>
+    <string name="new_signup">New sign up</string>
+    <string name="has_been_registered">A new user has been registered in the system</string>
 </resources>

@@ -19,4 +19,6 @@
     <string name="no_campos_vacios">¡No se puede dejar ningún campo vacío!</string>
     <string name="contraseñas_no_concuerdan">Las contraseñas no coinciden. Por favor, asegúrate de que lo hacen.</string>
     <string name="usuario_ya_existe">Este nombre de usuario está cogido. Por favor, elige uno que todavía esté disponible.</string>
+    <string name="new_signup">Nuevo registro</string>
+    <string name="has_been_registered">Un nuevo usuario ha sido registrado en el sistema</string>
 </resources>
