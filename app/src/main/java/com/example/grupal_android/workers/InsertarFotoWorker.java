@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.work.Worker;
@@ -37,8 +38,8 @@ public class InsertarFotoWorker extends Worker {
         int anchoDestino = getInputData().getInt("ancho",100);
         int altoDestino = getInputData().getInt("alto",100);
         String nameFranchise = getInputData().getString("nameFranchise");
-        float lat = getInputData().getFloat("lat",0);
-        float lng = getInputData().getFloat("lng",0);
+        String lat = getInputData().getString("lat");
+        String lng = getInputData().getString("lng");
         //Transformar en bitmap desde la uri
         Uri uriimagen = Uri.parse(uriString);
         String image = null;
@@ -74,6 +75,7 @@ public class InsertarFotoWorker extends Worker {
             parametrosJSON.put("nameFranchise",nameFranchise);
             parametrosJSON.put("lat",lat);
             parametrosJSON.put("lng",lng);
+            Log.d("owo","owo"+parametrosJSON);
         } catch (JSONException e) {
             e.printStackTrace();
         }

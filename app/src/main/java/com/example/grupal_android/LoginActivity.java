@@ -130,11 +130,18 @@ public class LoginActivity extends MainActivity {
         String username = this.usernameInput.getText().toString();
         super.sessionManager.startUserSession(username);
         super.preferencesManager.clearAllInputtedTextInFields();
-
+        /*Descomentar para probar el ShopActivity
+        Intent intent = new Intent(getApplication(), ShopActivity.class); // Por ahora, que navegue a Main
+        intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent.putExtra("nameFranchise","test").putExtra("lat","1.20")
+        .putExtra("lng","3.40"));
+        finish();
+        */
         Intent intent = new Intent(getApplication(), MainActivity.class); // Por ahora, que navegue a Main
         intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
+
     }
 
 

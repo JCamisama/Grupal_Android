@@ -35,8 +35,8 @@ public class ShopActivity extends MainActivity {
     private Uri uriimagen = null;
     private Bitmap bitmapredimensionado = null;
     private String nameFranchise = null;
-    private float lat = 0;
-    private float lng = 0;
+    private String lat = null;
+    private String lng = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,8 +96,8 @@ public class ShopActivity extends MainActivity {
             //Llamada a MiBD para que inserte la foto en la base de datos
             Data datos = new Data.Builder().putString("uriString",uriimagen.toString())
                     .putInt("ancho",anchoDestino).putInt("alto",altoDestino)
-                    .putString("nameFranchise",this.nameFranchise).putFloat("lat",this.lat)
-                    .putFloat("lng",this.lng).build();
+                    .putString("nameFranchise",this.nameFranchise).putString("lat",this.lat)
+                    .putString("lng",this.lng).build();
             OneTimeWorkRequest otwr = new OneTimeWorkRequest.Builder(InsertarFotoWorker.class).setInputData(datos).build();
             WorkManager.getInstance(this).enqueue(otwr);
 
@@ -111,6 +111,7 @@ public class ShopActivity extends MainActivity {
         this.titleTV = (TextView) findViewById(R.id.shopTitleLabel);
         this.latTV = (TextView) findViewById(R.id.latShopLabel);
         this.lngTV = (TextView) findViewById(R.id.lngShopLabel);
+        this.botonImagen = (ImageButton) findViewById(R.id.imageButton);
     }
 
     /**
@@ -120,11 +121,11 @@ public class ShopActivity extends MainActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             nameFranchise = extras.getString("nameFranchise");
-            lat = extras.getFloat("lat");
-            lng = extras.getFloat("lng");
+            lat = extras.getString("lat");
+            lng = extras.getString("lng");
             titleTV.setText(nameFranchise);
-            latTV.setText(Float.toString(lat));
-            lngTV.setText(Float.toString(lng));
+            latTV.setText(lat);
+            lngTV.setText(lng);
         }
     }
 
