@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Grupal_Android">
         <activity
+            android:name=".FranquiciaActivity"
+            android:exported="false" />
+        <activity
             android:name=".FranquiciaListActivity"
             android:exported="false" />
         <activity

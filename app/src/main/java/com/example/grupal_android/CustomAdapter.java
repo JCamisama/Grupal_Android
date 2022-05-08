@@ -1,8 +1,11 @@
 package com.example.grupal_android;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -17,8 +20,8 @@ public class CustomAdapter extends BaseAdapter {
     int logos[];
     LayoutInflater inflter;
 
-    public CustomAdapter(Context applicationContext, ArrayList<String> pfranquiciaList, int[] plogos) {
-        this.context = context;
+    public CustomAdapter(Context applicationContext, ArrayList<String> pfranquiciaList, int[] plogos, Context pcontext) {
+        this.context = pcontext;
         this.franquiciaList = pfranquiciaList;
         this.logos = plogos;
         inflter = (LayoutInflater.from(applicationContext));
@@ -48,6 +51,7 @@ public class CustomAdapter extends BaseAdapter {
         ImageView icon = (ImageView) view.findViewById(R.id.icon);
         pokemon.setText(franquiciaList.get(i));
         setImages(icon, pokemon.getText().toString());
+
         return view;
     }
 
