@@ -27,5 +27,6 @@ public class GlobalVariablesUtil {
     public static final String GET_USER_BY_ID_PHP = "select_user_by_username_grupal.php";
     public static final String INSERT_USER_PHP = "insert_user_grupal.php";
     public static final String FCM_NOTIFICATION = "fcm_notificacion.php";
+    public static final String INSERT_IMAGE = "insertarFoto.php";
 
 }
