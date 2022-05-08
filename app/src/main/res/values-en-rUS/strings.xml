@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Super Cool Shops</string>
+    <string name="preferencias">Preferences</string>
+    <string name="titulo_preferencias_idioma">Current Language</string>
+    <string name="ingles">English</string>
+    <string name="español">Spanish</string>
+    <string name="titulo_dialogo_preferencias_idioma">Choose a language</string>
+    <string name="resumen_preferencias_idioma">Select the language of the app</string>
+    <string name="usuario">User</string>
+    <string name="contraseña">Password</string>
+    <string name="login">Login</string>
+    <string name="link_registro_texto"><u>Not registered? Sign up here</u></string>
+    <string name="meter_usuario">Enter a username</string>
+    <string name="meter_contraseña">Enter a password</string>
+    <string name="repetir_contraseña">Repeat the password</string>
+    <string name="registrar">Register</string>
+    <string name="hecho">Done</string>
+    <string name="credenciales_incorrectas">Wrong credentials. Are you registered?</string>
+    <string name="no_campos_vacios">No empty fields allowed!</string>
+    <string name="contraseñas_no_concuerdan">Passwords do not match. Please, make sure that they do.</string>
+    <string name="usuario_ya_existe">This username is taken. Please, choose one that\'s still available.</string>
+</resources>
