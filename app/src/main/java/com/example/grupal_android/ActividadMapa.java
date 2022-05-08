@@ -1,6 +1,7 @@
 package com.example.grupal_android;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -114,6 +116,24 @@ public class ActividadMapa extends FragmentActivity implements OnMapReadyCallbac
                     }
                 });
         WorkManager.getInstance(this).enqueue(otwr);
+        googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            public boolean onMarkerClick(Marker marker) {
+                findShopWhithMarker(marker);
+                return false;
+            }
+        });
+    }
+    private void findShopWhithMarker(Marker pMarker) {
+        String tienda = pMarker.getTitle();
+        LatLng latLng = pMarker.getPosition();
+        Double lati = latLng.latitude;
+        Double lon = latLng.longitude;
+        Intent intent = new Intent(this, MainActivity.class);//Klasea aldatu behar da
+        intent.putExtra("tienda", tienda);
+        intent.putExtra("latitud", lati);
+        intent.putExtra("longitud", lon);
+        startActivity(intent);
+        finish();
     }
     public void hacerToast(int s){
         //Metodo de apoyo para hacer notificaciones del tipo toast
