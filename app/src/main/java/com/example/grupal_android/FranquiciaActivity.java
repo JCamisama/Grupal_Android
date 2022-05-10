@@ -3,9 +3,9 @@ package com.example.grupal_android;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,14 +29,33 @@ public class FranquiciaActivity extends AppCompatActivity {
         FranchiseManager man = FranchiseManager.getInstance(this.getApplicationContext());
         franquicia = man.getFranchise(pos);
 
-        TextView tx = findViewById(R.id.textView2);
-        TextView tipo = findViewById(R.id.tipoFranq);
-        TextView desc = findViewById(R.id.descripcion);
-        ImageView logo = findViewById(R.id.logo);
+        TextView tx;
+        TextView tipo;
+        TextView desc;
+        ImageView logo;
+
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+
+            tx = findViewById(R.id.franquicia2);
+            tipo = findViewById(R.id.tipoFranq2);
+            desc = findViewById(R.id.descripcion2);
+            logo = findViewById(R.id.logo2);
+
+        } else {
+
+            tx = findViewById(R.id.franquicia);
+            tipo = findViewById(R.id.tipoFranq);
+            desc = findViewById(R.id.descripcion);
+            logo = findViewById(R.id.logo);
+
+        }
+
         tx.setText(franquicia.getName());
         tipo.setText("Tipo: " + franquicia.getType_ES());
         desc.setText(franquicia.getDescription_ES());
         logo.setImageBitmap(franquicia.getLogo());
+
         //logo, tipo, nombre, descripcion
         // botones: mapa(pasar nombre tienda), web
     }
