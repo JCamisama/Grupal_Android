@@ -2,8 +2,15 @@ package com.example.grupal_android.workers;
 
 
 
+import static com.example.grupal_android.utils.GlobalVariablesUtil.FRANCHISE_NAME;
+import static com.example.grupal_android.utils.GlobalVariablesUtil.GET_FRANCHISE_BY_NAME_PHP;
+import static com.example.grupal_android.utils.GlobalVariablesUtil.GET_FRANCHISE_NAMES_PHP;
+import static com.example.grupal_android.utils.GlobalVariablesUtil.REMOTE_SERVER;
+
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -16,6 +23,7 @@ import com.example.grupal_android.models.Franchise;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -27,8 +35,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class GetFranchisesWorker extends Worker {
-    public GetFranchisesWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
+public class GetFranchiseByNameWorker extends Worker {
+    public GetFranchiseByNameWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
     }
 
@@ -36,9 +44,10 @@ public class GetFranchisesWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        String direccion = "http://ec2-52-56-170-196.eu-west-2.compute.amazonaws.com/midoyaga002/WEB/get_franchise_by_name.php";
+//        String direccion = "http://ec2-52-56-170-196.eu-west-2.compute.amazonaws.com/midoyaga002/WEB/get_franchise_by_name.php";
+        String direccion = REMOTE_SERVER + "/" + GET_FRANCHISE_BY_NAME_PHP;
         HttpURLConnection urlConnection;
-        String name = getInputData().getString("name");
+        String name = getInputData().getString(FRANCHISE_NAME);
 
         String parametros = "name="+name;
 
@@ -61,23 +70,23 @@ public class GetFranchisesWorker extends Worker {
                 while ((line = bufferedReader.readLine()) != null) {
                     result += line;
                 }
-                Log.d("log",result);
-                JSONArray jsonArray = new JSONArray(result);
-                for(int i = 0; i < jsonArray.length(); i++)
-                {
-                    String namephp = jsonArray.getJSONObject(i).getString("name");
-                    Bitmap logo = (Bitmap) jsonArray.getJSONObject(i).get("logo");
-                    String type_ES = jsonArray.getJSONObject(i).getString("type_ES");
-                    String type_EN = jsonArray.getJSONObject(i).getString("type_EN");
-                    String description_ES = jsonArray.getJSONObject(i).getString("description_ES");
-                    String description_EN = jsonArray.getJSONObject(i).getString("description_EN");
-                    String url = jsonArray.getJSONObject(i).getString("url");
 
-                    Franchise franchise = new Franchise(namephp,logo,type_ES,type_EN,description_ES,description_EN,url);
+                JSONObject jsonObject = new JSONObject(result);
 
-                    FranchiseManager.getInstance(getApplicationContext()).addFranquise(franchise);
+                byte[] imageData = Base64.decode(jsonObject.getString("logo"), Base64.DEFAULT);
 
-                }
+                String franchiseName = jsonObject.getString("name");
+                Bitmap logo = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
+                String type_ES = jsonObject.getString("type_ES");
+                String type_EN = jsonObject.getString("type_EN");
+                String description_ES = jsonObject.getString("description_ES");
+                String description_EN = jsonObject.getString("description_EN");
+                String url = jsonObject.getString("url");
+
+                Franchise franchise = new Franchise(franchiseName,logo,type_ES,type_EN,description_ES,description_EN,url);
+                FranchiseManager.getInstance(getApplicationContext()).addFranquise(franchise);
+
+                Log.i("GetFranchiseByName", "FRANCHISE --> " + franchise.getName());
                 inputStream.close();
 
                 return Result.success();

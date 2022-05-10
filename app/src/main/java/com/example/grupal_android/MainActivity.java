@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         this.preferencesManager = CustomPreferencesManager.getInstance(MainActivity.this);
         this.sessionManager = SessionManager.getInstance(MainActivity.this);
         this.frachiseManager = FranchiseManager.getInstance(MainActivity.this);
-        Log.d("aaa",frachiseManager.getFranchises().toString());
         this.manageCurrentAppLanguage();
 
 

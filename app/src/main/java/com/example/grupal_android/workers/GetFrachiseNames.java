@@ -2,6 +2,9 @@ package com.example.grupal_android.workers;
 
 
 
+import static com.example.grupal_android.utils.GlobalVariablesUtil.GET_FRANCHISE_NAMES_PHP;
+import static com.example.grupal_android.utils.GlobalVariablesUtil.REMOTE_SERVER;
+
 import android.content.Context;
 import android.util.Log;
 
@@ -31,7 +34,9 @@ public class GetFrachiseNames extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        String direccion = "http://ec2-52-56-170-196.eu-west-2.compute.amazonaws.com/midoyaga002/WEB/get_frachises_names.php";
+//        String direccion = "http://ec2-52-56-170-196.eu-west-2.compute.amazonaws.com/midoyaga002/WEB/get_frachises_names.php";
+        String direccion = REMOTE_SERVER + "/" + GET_FRANCHISE_NAMES_PHP;
+
         HttpURLConnection urlConnection;
         try {
             URL destino = new URL(direccion);
@@ -46,7 +51,7 @@ public class GetFrachiseNames extends Worker {
                 while ((line = bufferedReader.readLine()) != null) {
                     result += line;
                 }
-                Log.d("log",result);
+//                Log.d("log",result);
                 JSONArray jsonArray = new JSONArray(result);
                 ArrayList<String> lista = new ArrayList<>();
                 for(int i = 0; i < jsonArray.length(); i++)
@@ -56,6 +61,7 @@ public class GetFrachiseNames extends Worker {
                 }
                 inputStream.close();
 
+                Log.d("GetFranshiseNames", lista.toString());
                 Data resultados = new Data.Builder()
                         .putString("datos",lista.toString())
                         .build();
