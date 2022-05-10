@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import com.example.grupal_android.PreferencesActivity;
 
 import com.example.grupal_android.managers.CustomPreferencesManager;
+import com.example.grupal_android.managers.FranchiseManager;
 import com.example.grupal_android.managers.LanguageManager;
 import com.example.grupal_android.managers.SessionManager;
 import com.example.grupal_android.models.User;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected LanguageManager languageManager = null;
     protected CustomPreferencesManager preferencesManager = null;
     protected SessionManager sessionManager = null;
+    protected FranchiseManager frachiseManager = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,9 @@ public class MainActivity extends AppCompatActivity {
         this.languageManager = LanguageManager.getInstance(MainActivity.this);
         this.preferencesManager = CustomPreferencesManager.getInstance(MainActivity.this);
         this.sessionManager = SessionManager.getInstance(MainActivity.this);
+        this.frachiseManager = FranchiseManager.getInstance(MainActivity.this);
         this.manageCurrentAppLanguage();
+
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
