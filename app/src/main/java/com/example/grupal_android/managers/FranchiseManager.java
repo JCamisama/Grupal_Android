@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class FranchiseManager {
     private static FranchiseManager instance = null;
-    private Context myContext = null;
+    private Context myContext;
     public static final String defaultLanguage = "en";
     private ArrayList<String> names;
     private ArrayList<Franchise> franchises = new ArrayList<>();
@@ -96,13 +96,13 @@ public class FranchiseManager {
     }
 
 
+    public ArrayList<Franchise> getFranchises() {
+        return franchises;
+    }
 
-
-//    public ArrayList<Franchise> getFranchises(){
-//        this.getFranchisesNames();
-//        return franchises;
-//    }
-
+    public Franchise getFranchise(int pos){
+        return  franchises.get(pos);
+    }
 
     public void addFranquise(Franchise franchise){
         this.franchises.add(franchise);
