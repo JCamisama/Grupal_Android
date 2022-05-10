@@ -31,9 +31,6 @@ public class RegisterActivity extends MainActivity {
         setContentView(R.layout.activity_register);
         super.initializeMenuBar();
         this.initializeElements();
-
-        Log.d("Mamasita", super.frachiseManager.getFranchises().toString());
-        Log.d("Mamasita", super.frachiseManager.getFranchise(0).getLogo().toString());
     }
 
 

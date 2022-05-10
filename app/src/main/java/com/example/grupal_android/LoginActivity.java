@@ -131,7 +131,7 @@ public class LoginActivity extends MainActivity {
         super.sessionManager.startUserSession(username);
         super.preferencesManager.clearAllInputtedTextInFields();
 
-        Intent intent = new Intent(getApplication(), RegisterActivity.class); // Por ahora, que navegue a Main
+        Intent intent = new Intent(getApplication(), MainActivity.class); // Por ahora, que navegue a Main
         intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();

@@ -44,8 +44,8 @@ public class GetFranchiseByNameWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-//        String direccion = "http://ec2-52-56-170-196.eu-west-2.compute.amazonaws.com/midoyaga002/WEB/get_franchise_by_name.php";
-        String direccion = REMOTE_SERVER + "/" + GET_FRANCHISE_BY_NAME_PHP;
+        String direccion = "http://ec2-52-56-170-196.eu-west-2.compute.amazonaws.com/midoyaga002/WEB/get_franchise_by_name.php";
+        //String direccion = REMOTE_SERVER + "/" + GET_FRANCHISE_BY_NAME_PHP;
         HttpURLConnection urlConnection;
         String name = getInputData().getString(FRANCHISE_NAME);
 
@@ -102,5 +102,6 @@ public class GetFranchiseByNameWorker extends Worker {
 
         return Result.failure();
     }
+
 }
 
