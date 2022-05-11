@@ -3,27 +3,36 @@ package com.example.grupal_android;
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import androidx.lifecycle.Observer;
 import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkInfo;
 import androidx.work.WorkManager;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.grupal_android.workers.InsertarFotoWorker;
+import com.example.grupal_android.workers.ShopPhotoWorker;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class ShopActivity extends MainActivity {
 
@@ -50,7 +59,7 @@ public class ShopActivity extends MainActivity {
             bitmapredimensionado = savedInstanceState.getParcelable("bitmap");
             botonImagen.setImageBitmap(bitmapredimensionado);
         }
-
+        this.loadImage();
 
     }
 
@@ -153,8 +162,49 @@ public class ShopActivity extends MainActivity {
         elIntent.putExtra(MediaStore.EXTRA_OUTPUT, uriimagen);
         startActivityForResult(elIntent, CODIGO_FOTO_ARCHIVO);
 
+
     }
 
+    private void loadImage(){
+        Data datos = new Data.Builder()
+                .putString("name", nameFranchise)
+                .putString("lat", lat)
+                .putString("lng", lng)
+                .build();
+        OneTimeWorkRequest otwr = new OneTimeWorkRequest.Builder(ShopPhotoWorker.class).setInputData(datos).build();
+        WorkManager.getInstance(this).getWorkInfoByIdLiveData(otwr.getId())
+                .observe(this, new Observer<WorkInfo>() {
+                    @Override
+                    public void onChanged(WorkInfo workInfo) {
+                        if (workInfo != null && workInfo.getState().isFinished()) {
+                            try {
+                                //Leemos el fichero donde esta guardado el base64 de la foto que ha sido escrita por la clase DownloadWorker con anterioridad.
+                                BufferedReader ficherointerno = new BufferedReader(new InputStreamReader(
+                                        openFileInput("foto.txt")));
+                                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                                    //Decodificar la foto de string para poder proyectar la imagen por pantalla
+                                    String  linea =  ficherointerno.lines().collect(Collectors.joining());
+                                    ficherointerno.close();
+                                    if(!linea.equalsIgnoreCase("")){
 
+                                        byte[] bytes = Base64.decode(linea, Base64.DEFAULT);
+                                        Bitmap elBitMap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                                        ImageView img  = findViewById(R.id.imageButton);
+                                        img.setImageBitmap(elBitMap);
+                                        img.setEnabled(false);
+                                    }
+
+                                }
+
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }
+                });
+        WorkManager.getInstance(this).enqueue(otwr);
+    }
 
 }
