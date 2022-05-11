@@ -64,14 +64,14 @@ public class InsertarFotoWorker extends Worker {
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             bitmapredimensionado.compress(Bitmap.CompressFormat.PNG, 100, stream);
             fototransformada = stream.toByteArray();
-            //image = Base64.encodeToString(fototransformada, Base64.DEFAULT);
+            image = Base64.encodeToString(fototransformada, Base64.DEFAULT);
         } catch (IOException e) {
             e.printStackTrace();
         }
         JSONObject parametrosJSON = new JSONObject();
         try {
             //Pasar como parámetros JSON
-            parametrosJSON.put("image",fototransformada);
+            parametrosJSON.put("image",image);
             parametrosJSON.put("nameFranchise",nameFranchise);
             parametrosJSON.put("lat",lat);
             parametrosJSON.put("lng",lng);
