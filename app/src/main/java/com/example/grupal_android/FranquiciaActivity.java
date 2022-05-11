@@ -70,9 +70,10 @@ public class FranquiciaActivity extends AppCompatActivity {
 
     public void onMapa(View v){
 
-          System.out.println("Tu imaginate que ahora se abre un mapa");
+        System.out.println("Tu imaginate que ahora se abre un mapa");
 //        Intent i = new Intent(this, FranquiciaListActivity.class);
-//        startActivityForResult(i, 66);
+//        i.putExtra("tienda",franquicia.getName());
+//        startActivity(i);
 
     }
 
