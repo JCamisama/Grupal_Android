@@ -136,12 +136,13 @@ public class LoginActivity extends MainActivity {
         .putExtra("lng","3.40"));
         finish();
         */
+        /*Descomentar para probar el MapActivity
         Intent intent = new Intent(getApplication(), MapActivity.class); // Por ahora, que navegue a Main
         intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent.putExtra("tienda","test"));
-        /*Intent intent = new Intent(getApplication(), MainActivity.class); // Por ahora, que navegue a Main
+        startActivity(intent.putExtra("tienda","test"));*/
+        Intent intent = new Intent(getApplication(), MainActivity.class); // Por ahora, que navegue a Main
         intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);*/
+        startActivity(intent);
 
     }
 

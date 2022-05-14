@@ -3,8 +3,13 @@ package com.example.grupal_android;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,7 +22,9 @@ import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkInfo;
 import androidx.work.WorkManager;
 
+import com.example.grupal_android.workers.InsertarTiendaWorker;
 import com.example.grupal_android.workers.MapaWorker;
+import com.example.grupal_android.workers.ShopPhotoWorker;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -29,6 +36,12 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
     private String tienda;
@@ -72,6 +85,27 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                             Manifest.permission.ACCESS_COARSE_LOCATION},
                     1);
         }
+
+        //Al hacer un long click en el mapa, ...
+        googleMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+
+                googleMap.addMarker(new MarkerOptions().position(latLng).title(tienda));
+
+                Data datos = new Data.Builder()
+                        .putString("name", tienda)
+                        .putString("lat", String.format(Locale.US, "%.4f", latLng.latitude))
+                        .putString("lng", String.format(Locale.US,"%.4f", latLng.longitude))
+                        .build();
+                OneTimeWorkRequest otwr = new OneTimeWorkRequest.Builder(InsertarTiendaWorker.class).setInputData(datos).build();
+                WorkManager.getInstance(MapActivity.this).enqueue(otwr);
+
+            }
+        });
+
+
+
 
         FusedLocationProviderClient proveedordelocalizacion = LocationServices.getFusedLocationProviderClient(this);
         proveedordelocalizacion.getLastLocation()
@@ -127,7 +161,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                                 latitud = Double.parseDouble(arrLat[i]);
                                 longitud = Double.parseDouble(arrLon[i]);
                                 if(ubication){
-                                    if(latitud<latitudG+2 && latitud>latitudG-2 && longitud<latitudG+2 && longitud>latitudG-2){
+                                    if(latitud<latitudG+2 && latitud>latitudG-2 && longitud<longitudG+2 && longitud>longitudG-2){
                                         googleMap.addMarker(new MarkerOptions().position(new LatLng(latitud, longitud)).title(arrN[i]));
                                     }
                                 } else {

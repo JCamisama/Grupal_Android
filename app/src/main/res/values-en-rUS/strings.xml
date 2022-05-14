@@ -23,5 +23,5 @@
     <string name="new_signup">New sign up</string>
     <string name="has_been_registered">A new user has been registered in the system</string>
     <string name="noPer">You have to grant the permisson of ubication to see the ubications near you</string>
-    <string name="falloUbi">The ubication have failed</string>
+    <string name="falloUbi">The ubication has failed</string>
 </resources>

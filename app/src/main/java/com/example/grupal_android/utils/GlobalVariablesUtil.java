@@ -30,6 +30,7 @@ public class GlobalVariablesUtil {
     public static final String GET_FRANCHISE_BY_NAME_PHP = "get_franchise_by_name.php";
     public static final String FCM_NOTIFICATION = "fcm_notificacion.php";
     public static final String INSERT_IMAGE = "insertarFoto.php";
+    public static final String INSERT_SHOP = "insertarTienda.php";
 
     // Comunicación de Workers e Intents
     public static final String FRANCHISE_NAME = "franchiseName";

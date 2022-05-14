@@ -66,8 +66,8 @@ public class MapaWorker extends Worker {
 
                 for(int i = 0; i < jsonArray.length(); i++) {
                     String nombre = jsonArray.getJSONObject(i).getString("nameFranchise");
-                    String latitud = jsonArray.getJSONObject(i).getString("lat");
                     String longitud = jsonArray.getJSONObject(i).getString("lng");
+                    String latitud = jsonArray.getJSONObject(i).getString("lat");
                     listaN.add(nombre);
                     listaLat.add(latitud);
                     listaLon.add(longitud);
