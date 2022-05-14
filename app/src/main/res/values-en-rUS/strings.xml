@@ -22,4 +22,6 @@
     <string name="usuario_ya_existe">This username is taken. Please, choose one that\'s still available.</string>
     <string name="new_signup">New sign up</string>
     <string name="has_been_registered">A new user has been registered in the system</string>
+    <string name="noPer">You have to grant the permisson of ubication to see the ubications near you</string>
+    <string name="falloUbi">The ubication have failed</string>
 </resources>
