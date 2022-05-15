@@ -13,7 +13,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class FranquiciaListActivity extends AppCompatActivity {
+public class FranquiciaListActivity extends MainActivity {
 
     ListView simpleList;
     //private ArrayList<String> franquiciaList = new ArrayList<String>();
@@ -22,6 +22,8 @@ public class FranquiciaListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.franquicia_list_main);
+
+        super.initializeMenuBar();
 
 //        franquiciaList.add("Placeholder1");
 //        franquiciaList.add("Placeholder2");

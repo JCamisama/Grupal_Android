@@ -10,10 +10,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.grupal_android.managers.CustomPreferencesManager;
 import com.example.grupal_android.managers.FranchiseManager;
 import com.example.grupal_android.models.Franchise;
 
-public class FranquiciaActivity extends AppCompatActivity {
+public class FranquiciaActivity extends MainActivity {
 
     Franchise franquicia;
 
@@ -21,6 +22,8 @@ public class FranquiciaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_franquicia);
+
+        super.initializeMenuBar();
 
         Intent iin = getIntent();
         Bundle b = iin.getExtras();
@@ -52,9 +55,19 @@ public class FranquiciaActivity extends AppCompatActivity {
         }
 
         tx.setText(franquicia.getName());
-        tipo.setText("Tipo: " + franquicia.getType_ES());
-        desc.setText(franquicia.getDescription_ES());
         logo.setImageBitmap(franquicia.getLogo());
+
+        if (CustomPreferencesManager.getInstance(this).getString("language").equals("en")){
+
+            tipo.setText("Tipo: " + franquicia.getType_EN());
+            desc.setText(franquicia.getDescription_EN());
+
+        } else if (CustomPreferencesManager.getInstance(this).getString("language").equals("es")){
+
+            tipo.setText("Tipo: " + franquicia.getType_ES());
+            desc.setText(franquicia.getDescription_ES());
+
+        }
 
         //logo, tipo, nombre, descripcion
         // botones: mapa(pasar nombre tienda), web

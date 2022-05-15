@@ -12,10 +12,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.grupal_android.managers.CustomPreferencesManager;
 import com.example.grupal_android.managers.FranchiseManager;
 import com.example.grupal_android.models.Franchise;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class CustomAdapter extends BaseAdapter {
     Context context;
@@ -53,7 +55,16 @@ public class CustomAdapter extends BaseAdapter {
         ImageView icon = (ImageView) view.findViewById(R.id.icon);
         Franchise fran = this.franquiciaList.get(i);
         franquicia.setText(fran.getName());
-        tipo.setText("Tipo: " + fran.getType_ES());
+
+        if (CustomPreferencesManager.getInstance(this.context).getString("language").equals("en")){
+
+            tipo.setText("Tipo: " + fran.getType_EN());
+
+        } else if (CustomPreferencesManager.getInstance(this.context).getString("language").equals("es")){
+
+            tipo.setText("Tipo: " + fran.getType_ES());
+
+        }
 
         setImages(icon, fran);
 

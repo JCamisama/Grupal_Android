@@ -7,7 +7,7 @@ import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ListView extends AppCompatActivity {
+public class ListView extends MainActivity {
 
 
     @Override
