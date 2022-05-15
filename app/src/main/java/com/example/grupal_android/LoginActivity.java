@@ -137,7 +137,7 @@ public class LoginActivity extends MainActivity {
         .putExtra("lng","3.40"));
         finish();
         */
-        Intent intent = new Intent(getApplication(), MainActivity.class); // Por ahora, que navegue a Main
+        Intent intent = new Intent(getApplication(), FranquiciaListActivity.class); // Por ahora, que navegue a Main
         intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();

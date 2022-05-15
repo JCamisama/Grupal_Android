@@ -46,9 +46,9 @@ public class FranquiciaActivity extends MainActivity {
     public void onMapa(View v){
 
         System.out.println("Tu imaginate que ahora se abre un mapa");
-//        Intent i = new Intent(this, FranquiciaListActivity.class);
-//        i.putExtra("tienda",franquicia.getName());
-//        startActivity(i);
+        Intent i = new Intent(this, MapActivity.class);
+        i.putExtra("tienda",franquicia.getName());
+        startActivity(i);
 
     }
 
