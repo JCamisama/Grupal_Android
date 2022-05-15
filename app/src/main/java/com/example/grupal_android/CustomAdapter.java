@@ -1,11 +1,8 @@
 package com.example.grupal_android;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -17,12 +14,15 @@ import com.example.grupal_android.managers.FranchiseManager;
 import com.example.grupal_android.models.Franchise;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class CustomAdapter extends BaseAdapter {
     Context context;
     private ArrayList<Franchise> franquiciaList;
     LayoutInflater inflter;
+    TextView franquicia;
+    TextView tipo;
+    ImageView icon;
+    Franchise fran;
 
     public CustomAdapter(Context applicationContext, Context pcontext) {
         this.context = pcontext;
@@ -50,21 +50,10 @@ public class CustomAdapter extends BaseAdapter {
 
         Log.i("Recorrido","Paso por getView CustomAdapter");
         view = inflter.inflate(R.layout.activity_franquicia_list, null);
-        TextView franquicia = (TextView) view.findViewById(R.id.textView);
-        TextView tipo = (TextView) view.findViewById(R.id.tipo);
-        ImageView icon = (ImageView) view.findViewById(R.id.icon);
-        Franchise fran = this.franquiciaList.get(i);
-        franquicia.setText(fran.getName());
 
-        if (CustomPreferencesManager.getInstance(this.context).getString("language").equals("en")){
+        getElements(view);
 
-            tipo.setText("Tipo: " + fran.getType_EN());
-
-        } else if (CustomPreferencesManager.getInstance(this.context).getString("language").equals("es")){
-
-            tipo.setText("Tipo: " + fran.getType_ES());
-
-        }
+        setElements(i);
 
         setImages(icon, fran);
 
@@ -76,6 +65,31 @@ public class CustomAdapter extends BaseAdapter {
 
         Log.i("Recorrido","Paso por setImages CustomAdapter");
         icon.setImageBitmap(fran.getLogo());
+
+    }
+
+    private void getElements(View view) {
+
+        franquicia = (TextView) view.findViewById(R.id.textView);
+        tipo = (TextView) view.findViewById(R.id.tipo);
+        icon = (ImageView) view.findViewById(R.id.icon);
+
+    }
+
+    private void setElements(int i) {
+
+        fran = this.franquiciaList.get(i);
+        franquicia.setText(fran.getName());
+
+        if (CustomPreferencesManager.getInstance(this.context).getString("language").equals("en")){
+
+            tipo.setText("Tipo: " + fran.getType_EN());
+
+        } else if (CustomPreferencesManager.getInstance(this.context).getString("language").equals("es")){
+
+            tipo.setText("Tipo: " + fran.getType_ES());
+
+        }
 
     }
 

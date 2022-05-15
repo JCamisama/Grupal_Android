@@ -1,22 +1,14 @@
 package com.example.grupal_android;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-
 public class FranquiciaListActivity extends MainActivity {
 
     ListView simpleList;
-    //private ArrayList<String> franquiciaList = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +16,6 @@ public class FranquiciaListActivity extends MainActivity {
         setContentView(R.layout.franquicia_list_main);
 
         super.initializeMenuBar();
-
-//        franquiciaList.add("Placeholder1");
-//        franquiciaList.add("Placeholder2");
-//        franquiciaList.add("Placeholder3");
 
         simpleList = (ListView) findViewById(R.id.simpleListView);
         CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), this.getApplicationContext());
