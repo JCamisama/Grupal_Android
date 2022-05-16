@@ -28,6 +28,9 @@ public class InsertarFotoWorker extends Worker {
         super(context, workerParams);
     }
 
+    /**
+     *  Método que llamara al php que su funcion es meter una foto de sacada por el usuario
+     */
     @NonNull
     @Override
     public Result doWork() {

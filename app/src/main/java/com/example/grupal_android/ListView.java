@@ -4,6 +4,9 @@ import android.os.Bundle;
 
 public class ListView extends MainActivity {
 
+    /**
+     *  Actividad del ListView
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

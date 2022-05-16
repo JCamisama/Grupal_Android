@@ -22,6 +22,10 @@ public class InsertarTiendaWorker extends Worker {
         super(context, workerParams);
     }
 
+    /**
+     *  Método que insertara una tienda en la base de datos mediante un php mientras que le proporciones el nombre, latitud y longitud de la tienda
+     */
+
     @NonNull
     @Override
     public Result doWork() {

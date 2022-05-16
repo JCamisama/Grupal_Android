@@ -1,35 +1,24 @@
 package com.example.grupal_android.workers;
 
-import static com.example.grupal_android.utils.GlobalVariablesUtil.REMOTE_SERVER;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Base64;
-import android.util.Log;
+
 
 import androidx.annotation.NonNull;
-import androidx.work.Data;
+
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
 
 import com.example.grupal_android.utils.GlobalVariablesUtil;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ShopPhotoWorker extends Worker {
@@ -37,6 +26,10 @@ public class ShopPhotoWorker extends Worker {
         super(context, workerParams);
     }
 
+
+    /**
+     *  Metodo encargado en conseguir la foto de una tienda concreta sabiendo el nombre, latitud y longitud
+     */
 
     @NonNull
     @Override

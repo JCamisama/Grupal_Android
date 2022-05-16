@@ -16,6 +16,10 @@ import com.example.grupal_android.models.Franchise;
 
 import java.util.ArrayList;
 
+/**
+ *  Adaptador de listview
+ */
+
 public class CustomAdapter extends BaseAdapter {
     Context context;
     private ArrayList<Franchise> franquiciaList;

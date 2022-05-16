@@ -27,11 +27,12 @@ public class MapaWorker extends Worker {
         super(context, workerParams);
 
     }
-
+    /**
+     * Método que devolvera todas las ubicaciones de una franquicia de tiendas gracias un php
+     */
     @NonNull
     @Override
     public Result doWork() {
-        //Método que hara una llamada al php de conseguir la ubicacion de todos los usuarios registrados
         String direccion = GlobalVariablesUtil.REMOTE_SERVER +"/"+GlobalVariablesUtil.GET_UBIS;
         HttpURLConnection urlConnection;
         String tienda = getInputData().getString("tienda");

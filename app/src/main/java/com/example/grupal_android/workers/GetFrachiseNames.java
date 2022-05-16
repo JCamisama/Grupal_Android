@@ -30,7 +30,9 @@ public class GetFrachiseNames extends Worker {
         super(context, workerParams);
     }
 
-
+    /**
+     * Método que hara una llamada al php encargado de conseguir todos los nombres de las franquicias
+     */
     @NonNull
     @Override
     public Result doWork() {
@@ -51,7 +53,6 @@ public class GetFrachiseNames extends Worker {
                 while ((line = bufferedReader.readLine()) != null) {
                     result += line;
                 }
-//                Log.d("log",result);
                 JSONArray jsonArray = new JSONArray(result);
                 ArrayList<String> lista = new ArrayList<>();
                 for(int i = 0; i < jsonArray.length(); i++)
@@ -61,7 +62,6 @@ public class GetFrachiseNames extends Worker {
                 }
                 inputStream.close();
 
-                Log.d("GetFranshiseNames", lista.toString());
                 Data resultados = new Data.Builder()
                         .putString("datos",lista.toString())
                         .build();

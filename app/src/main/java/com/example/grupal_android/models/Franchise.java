@@ -2,6 +2,9 @@ package com.example.grupal_android.models;
 
 import android.graphics.Bitmap;
 
+/**
+ * Modelo de la entidad franquicia
+ */
 public class Franchise {
     String name;
     Bitmap logo;
@@ -10,6 +13,7 @@ public class Franchise {
     String description_ES;
     String description_EN;
     String url;
+
 
     public Franchise(String name, Bitmap logo, String type_ES, String type_EN, String description_ES, String description_EN, String url) {
         this.name = name;
@@ -20,6 +24,10 @@ public class Franchise {
         this.description_EN = description_EN;
         this.url = url;
     }
+
+    /**
+     * Getters y Setters
+     */
 
     public String getName() {
         return name;

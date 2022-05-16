@@ -71,14 +71,18 @@ public class FranchiseManager {
         WorkManager.getInstance(myContext.getApplicationContext()).enqueue(otwr);
     }
 
-
+    /**
+     * Recorre todos los nombres de las franquicias haciendo la llamada al metodo getFranchiseFromServerByName
+     */
     private void obtainFranchisesFromNames(){
         for(String franchiseName : this.names) {
             this.getFranchiseFromServerByName(franchiseName);
         }
     }
 
-
+    /**
+     * Llama al worker encargado de conseguir todos los atributos de las franquicias
+     */
     private void getFranchiseFromServerByName(String franchiseName) {
         Data datos = new Data.Builder().putString(FRANCHISE_NAME, franchiseName).build();
         OneTimeWorkRequest otwr =  new OneTimeWorkRequest.Builder(GetFranchiseByNameWorker.class)
@@ -95,15 +99,21 @@ public class FranchiseManager {
         WorkManager.getInstance(myContext.getApplicationContext()).enqueue(otwr);
     }
 
-
+    /**
+     * Devuelve una lista de todas las franquicias de la base de datos
+     */
     public ArrayList<Franchise> getFranchises() {
         return franchises;
     }
-
+    /**
+     * Devuelve una sola franquicia mediante la posición en la lista
+     */
     public Franchise getFranchise(int pos){
         return  franchises.get(pos);
     }
-
+    /**
+     * Añade una franquicia a la lista de franquicias
+     */
     public void addFranquise(Franchise franchise){
         this.franchises.add(franchise);
     }

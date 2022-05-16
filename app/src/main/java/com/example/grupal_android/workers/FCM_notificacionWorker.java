@@ -23,6 +23,9 @@ public class FCM_notificacionWorker extends Worker {
         super(context, workerParams);
     }
 
+    /**
+     * Método que hara una llamada al php encargado de conseguir el mensaje FCM para la notificacion de registro
+     */
     @NonNull
     @Override
     public Result doWork() {

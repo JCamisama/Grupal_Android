@@ -22,6 +22,9 @@ public class ServicioFirebase extends FirebaseMessagingService {
 
 
     }
+    /**
+     * Método que recibe notificaciones de firebase y las desplegara en tu dispositivo
+     */
 
     public void onMessageReceived(RemoteMessage remoteMessage) {
 

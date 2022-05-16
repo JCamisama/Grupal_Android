@@ -41,6 +41,9 @@ public class GetFranchiseByNameWorker extends Worker {
         super(context, workerParams);
     }
 
+    /**
+     * Método encargado en llamar al php encargado de conseguir el todos los atributos de una franquicia por el nombre de la misma
+     */
 
     @NonNull
     @Override

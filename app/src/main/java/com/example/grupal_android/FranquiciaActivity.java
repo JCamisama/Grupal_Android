@@ -21,6 +21,9 @@ public class FranquiciaActivity extends MainActivity {
     private TextView desc;
     private ImageView logo;
 
+    /**
+     *  Crear la actividad y vincular con la actividad correspondiente
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,9 @@ public class FranquiciaActivity extends MainActivity {
 
     }
 
+    /**
+     *  Iniciar la actividad MapActivity mediante el botón mapa
+     */
     public void onMapa(View v){
 
         System.out.println("Tu imaginate que ahora se abre un mapa");
@@ -52,6 +58,10 @@ public class FranquiciaActivity extends MainActivity {
         startActivity(i);
 
     }
+
+    /**
+     * Conseguir extras mandadas por la actividad anterior
+     */
 
     private void getExtras() {
 
@@ -64,6 +74,9 @@ public class FranquiciaActivity extends MainActivity {
 
     }
 
+    /**
+     *  Conseguir todos los elementos del layout
+     */
     private void getElements() {
 
         int orientation = getResources().getConfiguration().orientation;
@@ -85,6 +98,9 @@ public class FranquiciaActivity extends MainActivity {
 
     }
 
+    /**
+     *  Settear todos los elementos del layout
+     */
     private void setElements() {
 
         tx.setText(franquicia.getName());

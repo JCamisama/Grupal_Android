@@ -17,7 +17,9 @@ public class StringManipulator {
 
         return result;
     }
-
+    /**
+     * Metodo encargado de conseguir un String en el formato deseado
+     * */
     private static String convertToTitleCaseIteratingChars(String nonEmptyText) {
         StringBuilder converted = new StringBuilder();
 
@@ -37,6 +39,9 @@ public class StringManipulator {
         return converted.toString();
     }
 
+    /**
+     *  Metodo para convertir un String en un Arraylist de Strings
+     */
     public static ArrayList<String> getArrayListFromStringifiedArray(String stringifiedArray) {
         // Quitando las llaves cuadradas del principio y del final
         String joinedMinusBrackets = stringifiedArray.substring( 1, stringifiedArray.length() - 1);

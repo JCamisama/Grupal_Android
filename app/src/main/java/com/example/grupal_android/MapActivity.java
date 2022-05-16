@@ -49,6 +49,9 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     private double longitudG;
     private boolean ubication = false;
 
+    /**
+     *  Conseguir todos los elementos del layout
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Al crear la actividad se vincula con  el layout del mapa. Así, enseñando el mapa mundi
@@ -86,7 +89,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                     1);
         }
 
-        //Al hacer un long click en el mapa, ...
+        //Al hacer un long click en el mapa insertar una nueva tienda
         googleMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
             public void onMapLongClick(LatLng latLng) {
@@ -106,7 +109,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
 
 
-
+        //Conseguir la geolocalización
         FusedLocationProviderClient proveedordelocalizacion = LocationServices.getFusedLocationProviderClient(this);
         proveedordelocalizacion.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
@@ -180,6 +183,9 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             }
         });
     }
+    /**
+     *  Abrir actividad ShopActivity
+     */
     private void findShopWhithMarker(Marker pMarker) {
         String tienda = pMarker.getTitle();
         LatLng latLng = pMarker.getPosition();

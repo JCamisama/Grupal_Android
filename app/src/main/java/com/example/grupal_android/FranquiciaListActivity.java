@@ -9,7 +9,9 @@ import android.widget.ListView;
 public class FranquiciaListActivity extends MainActivity {
 
     ListView simpleList;
-
+    /**
+     * Actividad de la lista de las franquicias
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
