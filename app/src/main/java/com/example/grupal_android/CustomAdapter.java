@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.grupal_android.managers.CustomPreferencesManager;
 import com.example.grupal_android.managers.FranchiseManager;
+import com.example.grupal_android.managers.LanguageManager;
 import com.example.grupal_android.models.Franchise;
 
 import java.util.ArrayList;
@@ -81,13 +82,13 @@ public class CustomAdapter extends BaseAdapter {
         fran = this.franquiciaList.get(i);
         franquicia.setText(fran.getName());
 
-        if (CustomPreferencesManager.getInstance(this.context).getString("language").equals("en")){
+        if (LanguageManager.getInstance(this.context).getCurrentLanguageCodeFromPreferences().equals("en")){
 
-            tipo.setText("Tipo: " + fran.getType_EN());
+            tipo.setText(this.context.getString(R.string.tipo)+": " + fran.getType_EN());
 
-        } else if (CustomPreferencesManager.getInstance(this.context).getString("language").equals("es")){
+        } else if (LanguageManager.getInstance(this.context).getCurrentLanguageCodeFromPreferences().equals("es")){
 
-            tipo.setText("Tipo: " + fran.getType_ES());
+            tipo.setText(this.context.getString(R.string.tipo)+": " + fran.getType_ES());
 
         }
 

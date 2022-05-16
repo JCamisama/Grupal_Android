@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.grupal_android.managers.CustomPreferencesManager;
 import com.example.grupal_android.managers.FranchiseManager;
+import com.example.grupal_android.managers.LanguageManager;
 import com.example.grupal_android.models.Franchise;
 
 public class FranquiciaActivity extends MainActivity {
@@ -89,14 +90,14 @@ public class FranquiciaActivity extends MainActivity {
         tx.setText(franquicia.getName());
         logo.setImageBitmap(franquicia.getLogo());
 
-        if (CustomPreferencesManager.getInstance(this).getString("language").equals("en")){
+        if (LanguageManager.getInstance(this).getCurrentLanguageCodeFromPreferences().equals("en")){
 
-            tipo.setText("Tipo: " + franquicia.getType_EN());
+            tipo.setText(getString(R.string.tipo)+": " + franquicia.getType_EN());
             desc.setText(franquicia.getDescription_EN());
 
-        } else if (CustomPreferencesManager.getInstance(this).getString("language").equals("es")){
+        } else if (LanguageManager.getInstance(this).getCurrentLanguageCodeFromPreferences().equals("es")){
 
-            tipo.setText("Tipo: " + franquicia.getType_ES());
+            tipo.setText(getString(R.string.tipo)+": " + franquicia.getType_ES());
             desc.setText(franquicia.getDescription_ES());
 
         }

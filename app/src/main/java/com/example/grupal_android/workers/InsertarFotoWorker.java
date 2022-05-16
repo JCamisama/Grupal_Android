@@ -31,7 +31,7 @@ public class InsertarFotoWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        String direccion = "http://ec2-52-56-170-196.eu-west-2.compute.amazonaws.com/asanchez294/WEB/grupal"+"/"+ GlobalVariablesUtil.INSERT_IMAGE;
+        String direccion = GlobalVariablesUtil.REMOTE_SERVER+"/"+GlobalVariablesUtil.INSERT_IMAGE;
         HttpURLConnection urlConnection;
         //Obtener los parámetros del Data
         String uriString = getInputData().getString("uriString");

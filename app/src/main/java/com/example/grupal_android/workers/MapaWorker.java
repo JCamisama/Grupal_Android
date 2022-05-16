@@ -7,6 +7,8 @@ import androidx.work.Data;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
+import com.example.grupal_android.utils.GlobalVariablesUtil;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -30,7 +32,7 @@ public class MapaWorker extends Worker {
     @Override
     public Result doWork() {
         //Método que hara una llamada al php de conseguir la ubicacion de todos los usuarios registrados
-        String direccion = "http://ec2-52-56-170-196.eu-west-2.compute.amazonaws.com/midoyaga002/WEB/getUbis.php";
+        String direccion = GlobalVariablesUtil.REMOTE_SERVER +"/"+GlobalVariablesUtil.GET_UBIS;
         HttpURLConnection urlConnection;
         String tienda = getInputData().getString("tienda");
         String parametros = "tienda="+tienda;

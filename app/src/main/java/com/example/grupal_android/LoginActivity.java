@@ -26,6 +26,7 @@ public class LoginActivity extends MainActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        super.preferencesManager.clearAllInputtedTextInFields();
 
         super.initializeMenuBar();
         this.initializeElements();
@@ -54,7 +55,6 @@ public class LoginActivity extends MainActivity {
         Log.i("LoginActivity", "I CLICKED ON THE REGISTER TEXT!!!");
         Intent intent = new Intent(getApplication(), RegisterActivity.class);
         startActivity(intent);
-        finish();
     }
 
 
@@ -137,10 +137,9 @@ public class LoginActivity extends MainActivity {
         .putExtra("lng","3.40"));
         finish();
         */
-        Intent intent = new Intent(getApplication(), FranquiciaListActivity.class); // Por ahora, que navegue a Main
+        Intent intent = new Intent(getApplication(), FranquiciaListActivity.class);
         intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
-        finish();
 
     }
 

@@ -25,7 +25,7 @@ public class InsertarTiendaWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        String direccion = "http://ec2-52-56-170-196.eu-west-2.compute.amazonaws.com/midoyaga002/WEB/"+"/"+ GlobalVariablesUtil.INSERT_SHOP;
+        String direccion = GlobalVariablesUtil.REMOTE_SERVER+"/"+GlobalVariablesUtil.INSERT_SHOP;
         HttpURLConnection urlConnection;
         //Obtener los parámetros del Data
         String name = getInputData().getString("name");

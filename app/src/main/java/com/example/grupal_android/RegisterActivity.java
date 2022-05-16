@@ -36,6 +36,7 @@ public class RegisterActivity extends MainActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        super.preferencesManager.clearAllInputtedTextInFields();
         super.initializeMenuBar();
         this.initializeElements();
     }
@@ -198,7 +199,7 @@ public class RegisterActivity extends MainActivity {
         super.sessionManager.startUserSession(username);
         super.preferencesManager.clearAllInputtedTextInFields();
 
-        Intent intent = new Intent(getApplication(), MainActivity.class);
+        Intent intent = new Intent(getApplication(), FranquiciaListActivity.class);
         intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();

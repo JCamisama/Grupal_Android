@@ -12,11 +12,6 @@
         android:title="@string/preferencias"
         app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/filler"
-        android:icon="@android:drawable/btn_star_big_on"
-        android:title="Opción pa rellenar"
-        app:showAsAction="never"/>
 <!--    <item-->
 <!--        android:id="@+id/logout"-->
 <!--        android:icon="@android:drawable/btn_star_big_on"-->

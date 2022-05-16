@@ -24,4 +24,5 @@
     <string name="has_been_registered">Un nuevo usuario ha sido registrado en el sistema</string>
     <string name="noPer">Necesitas otorgar el permiso de la ubicacion para ver ubicaciones cerca tuyo</string>
     <string name="falloUbi">Fallo con la ubicacion</string>
+    <string name="tipo">Tipo</string>
 </resources>

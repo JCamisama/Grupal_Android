@@ -183,14 +183,13 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     private void findShopWhithMarker(Marker pMarker) {
         String tienda = pMarker.getTitle();
         LatLng latLng = pMarker.getPosition();
-        Double lati = latLng.latitude;
-        Double lon = latLng.longitude;
-        Intent intent = new Intent(this, MainActivity.class);//Klasea aldatu behar da
-        intent.putExtra("tienda", tienda);
-        intent.putExtra("latitud", lati);
-        intent.putExtra("longitud", lon);
+        String lat = String.format(Locale.US, "%.4f", latLng.latitude);
+        String lng = String.format(Locale.US, "%.4f", latLng.longitude);
+        Intent intent = new Intent(this, ShopActivity.class);
+        intent.putExtra("nameFranchise", tienda);
+        intent.putExtra("lat", lat);
+        intent.putExtra("lng", lng);
         startActivity(intent);
-        finish();
     }
     public void hacerToast(int s){
         //Metodo de apoyo para hacer notificaciones del tipo toast

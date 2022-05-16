@@ -14,7 +14,7 @@ import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
 
-
+import com.example.grupal_android.utils.GlobalVariablesUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,7 +41,7 @@ public class ShopPhotoWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        String direccion = "http://ec2-52-56-170-196.eu-west-2.compute.amazonaws.com/midoyaga002/WEB/get_shop_photo.php";
+        String direccion = GlobalVariablesUtil.REMOTE_SERVER+"/"+GlobalVariablesUtil.GET_SHOP_PHOTO;
         //String direccion = REMOTE_SERVER + "/" + GET_FRANCHISE_BY_NAME_PHP;
         HttpURLConnection urlConnection;
         String name = getInputData().getString("name");

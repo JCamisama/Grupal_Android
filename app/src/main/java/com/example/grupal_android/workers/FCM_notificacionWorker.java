@@ -26,7 +26,7 @@ public class FCM_notificacionWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        String direccion = "http://ec2-52-56-170-196.eu-west-2.compute.amazonaws.com/asanchez294/WEB/grupal"+"/"+GlobalVariablesUtil.FCM_NOTIFICATION;
+        String direccion = GlobalVariablesUtil.REMOTE_SERVER+"/"+GlobalVariablesUtil.FCM_NOTIFICATION;
         HttpURLConnection urlConnection;
         //Obtener los parámetros del Data
         String token = getInputData().getString("token");
