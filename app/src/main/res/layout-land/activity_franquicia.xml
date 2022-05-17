@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/black_2">
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="731dp"
+        android:layout_height="411dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/fondo_horizontal" />
 
     <include
         android:id="@+id/include"
@@ -16,53 +28,53 @@
 
     <Button
         android:id="@+id/mapa2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
+        style="@style/MyButtonStyle"
+        android:layout_width="105dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginBottom="4dp"
         android:onClick="onMapa"
         android:text="Mapa"
-        app:layout_constraintStart_toEndOf="@+id/descripcion2"
-        app:layout_constraintTop_toBottomOf="@+id/web2" />
+        app:layout_constraintBottom_toBottomOf="@+id/descripcion2"
+        app:layout_constraintStart_toEndOf="@+id/descripcion2" />
 
     <Button
         android:id="@+id/web2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="116dp"
+        style="@style/MyButtonStyle"
+        android:layout_width="105dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="4dp"
         android:onClick="onWeb"
         android:text="Web"
         app:layout_constraintStart_toEndOf="@+id/descripcion2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/descripcion2" />
 
     <TextView
         android:id="@+id/descripcion2"
         android:layout_width="180dp"
         android:layout_height="180dp"
+        android:textColor="@color/white"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginBottom="96dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.029"
-        app:layout_constraintStart_toEndOf="@+id/logo2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/logo2"
         android:layout_width="180dp"
         android:layout_height="180dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.125"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tipoFranq2"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toStartOf="@+id/descripcion2"
+        app:layout_constraintTop_toTopOf="@+id/descripcion2" />
 
     <TextView
         android:id="@+id/tipoFranq2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,10 +84,12 @@
         android:id="@+id/franquicia2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="20dp"
         android:text="Soy una Franquicia"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/logo2"
+        app:layout_constraintEnd_toEndOf="@+id/logo2"
+        app:layout_constraintHorizontal_bias="0.752"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

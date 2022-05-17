@@ -4,7 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black_2"
     tools:context=".FranquiciaActivity">
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="411dp"
+        android:layout_height="731dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/fondo" />
 
     <include
         android:id="@+id/include"
@@ -20,8 +31,9 @@
         android:id="@+id/franquicia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="96dp"
         android:text="Soy una Franquicia"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,6 +53,7 @@
         android:id="@+id/descripcion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
@@ -52,6 +65,7 @@
         android:id="@+id/tipoFranq"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -60,10 +74,11 @@
 
     <Button
         android:id="@+id/web"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginBottom="28dp"
+        style="@style/MyButtonStyle"
+        android:layout_width="105dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginBottom="192dp"
         android:onClick="onWeb"
         android:text="Web"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -71,12 +86,12 @@
 
     <Button
         android:id="@+id/mapa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="28dp"
+        style="@style/MyButtonStyle"
+        android:layout_width="105dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="76dp"
         android:onClick="onMapa"
         android:text="Mapa"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/web" />
+        app:layout_constraintBottom_toBottomOf="@+id/web"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

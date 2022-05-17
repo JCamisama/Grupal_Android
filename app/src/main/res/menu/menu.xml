@@ -10,6 +10,7 @@
         android:id="@+id/preferences"
         android:icon="@android:drawable/btn_star_big_on"
         android:title="@string/preferencias"
+        android:textColor="@color/white"
         app:showAsAction="never"/>
 
 <!--    <item-->

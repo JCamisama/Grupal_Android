@@ -4,4 +4,14 @@
         <!-- Primary brand color. -->
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.TemaBlancoNegro" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:navigationBarColor">@color/black</item>
+        <item name="android:colorButtonNormal">@color/black</item>
+    </style>
 </resources>

@@ -9,4 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gold_standard">#A39726</color>
     <color name="transparent">#00000000</color>
+    <color name="grey_500">#808080</color>
+    <color name="grey_200">#C5C5C5</color>
+    <color name="grey_700">#525252</color>
+    <color name="black_2">#070707</color>
 </resources>

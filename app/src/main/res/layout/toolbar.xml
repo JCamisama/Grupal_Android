@@ -8,12 +8,12 @@
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/purple_200"
+        android:background="@color/grey_500"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/MyPopupMenuStyle"
-        app:titleTextAppearance="@style/MyToolbarTitleText"/>
+        app:titleTextAppearance="@style/MyToolbarTitleText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

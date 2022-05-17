@@ -15,19 +15,27 @@
         <entry key="..\:/Users/GySyX/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout/toolbar.xml" value="0.3392029657089898" />
         <entry key="..\:/Users/GySyX/AndroidStudioProjects/Grupal_Android/app/src/main/res/menu/menu.xml" value="0.225" />
         <entry key="..\:/Users/GySyX/AndroidStudioProjects/Grupal_Android/app/src/main/res/xml/my_preferences.xml" value="0.16576086956521738" />
+        <entry key="..\:/Users/adria/AndroidStudioProjects/Grupal_Android/app/src/main/res/drawable/edit_text_rounded.xml" value="0.1785" />
+        <entry key="..\:/Users/adria/AndroidStudioProjects/Grupal_Android/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1785" />
+        <entry key="..\:/Users/adria/AndroidStudioProjects/Grupal_Android/app/src/main/res/drawable/rounded_shape.xml" value="0.1785" />
+        <entry key="..\:/Users/adria/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout-land/activity_franquicia.xml" value="0.1" />
+        <entry key="..\:/Users/adria/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout-land/activity_franquicia_list.xml" value="0.2947916666666667" />
+        <entry key="..\:/Users/adria/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout-land/activity_login.xml" value="0.1" />
+        <entry key="..\:/Users/adria/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout-land/activity_preferences.xml" value="0.1" />
+        <entry key="..\:/Users/adria/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout-land/activity_register.xml" value="0.1484375" />
+        <entry key="..\:/Users/adria/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout-land/franquicia_list_main.xml" value="0.1" />
+        <entry key="..\:/Users/adria/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout/activity_franquicia.xml" value="0.1796875" />
+        <entry key="..\:/Users/adria/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout/activity_franquicia_list.xml" value="0.1796875" />
+        <entry key="..\:/Users/adria/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout/activity_login.xml" value="0.1796875" />
+        <entry key="..\:/Users/adria/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
         <entry key="..\:/Users/adria/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout/activity_mapa.xml" value="0.1796875" />
+        <entry key="..\:/Users/adria/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout/activity_preferences.xml" value="0.1796875" />
         <entry key="..\:/Users/adria/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout/activity_register.xml" value="0.1796875" />
+        <entry key="..\:/Users/adria/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout/activity_shop.xml" value="0.1796875" />
+        <entry key="..\:/Users/adria/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout/franquicia_list_main.xml" value="0.1" />
         <entry key="..\:/Users/adria/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout/toolbar.xml" value="0.1796875" />
-        <entry key="..\:/Users/ander/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout-land/activity_franquicia.xml" value="0.2" />
-        <entry key="..\:/Users/ander/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout-land/activity_franquicia_list.xml" value="0.21516754850088182" />
-        <entry key="..\:/Users/ander/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout/activity_franquicia.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/ander/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout/activity_franquicia_list.xml" value="0.2" />
-        <entry key="..\:/Users/ander/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout/activity_login.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/ander/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/ander/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout/activity_register.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/ander/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout/franquiciaListMain.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/ander/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout/franquicia_list_main.xml" value="0.264" />
-        <entry key="..\:/Users/ander/AndroidStudioProjects/Grupal_Android/app/src/main/res/layout/toolbar.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/adria/AndroidStudioProjects/Grupal_Android/app/src/main/res/menu/menu.xml" value="0.1796875" />
+        <entry key="..\:/Users/adria/AndroidStudioProjects/Grupal_Android/app/src/main/res/xml/my_preferences.xml" value="0.1" />
       </map>
     </option>
   </component>
