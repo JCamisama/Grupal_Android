@@ -188,12 +188,10 @@ public class ShopActivity extends MainActivity {
     }
 
     public void onClickLike(View v){
-        if (startVote == null) {
-            this.insertVote();
-        }
         voted = 1;
         newPoints = puntos + voted;
         votos.setText(Integer.toString(newPoints));
+        this.insertVote();
         this.updateVote();
         this.updatePuntuation();
 
@@ -203,12 +201,10 @@ public class ShopActivity extends MainActivity {
 
 
     public void onClickDislike(View v){
-        if (startVote == null) {
-            this.insertVote();
-        }
         voted = -1;
         newPoints = puntos + voted;
         votos.setText(Integer.toString(newPoints));
+        this.insertVote();
         this.updateVote();
         this.updatePuntuation();
 
@@ -343,6 +339,7 @@ public class ShopActivity extends MainActivity {
                     public void onChanged(WorkInfo workInfo) {
                         if (workInfo != null && workInfo.getState().isFinished()) {
                                 startVote = workInfo.getOutputData().getString("voted");
+                                Log.d("ad", startVote);
                                 if (startVote != null){
                                   /*  if(Integer.parseInt(startVote) > 0){
                                         like();
