@@ -32,6 +32,7 @@ public class GlobalVariablesUtil {
     public static final String INSERT_IMAGE = "insertarFoto.php";
     public static final String INSERT_SHOP = "insertarTienda.php";
     public static final String GET_SHOP_PHOTO = "get_shop_photo.php";
+    public static final String GET_SHOP_PUNTUATION = "get_shop_puntuation.php";
     public static final String GET_UBIS = "getUbis.php";
 
     // Comunicación de Workers e Intents

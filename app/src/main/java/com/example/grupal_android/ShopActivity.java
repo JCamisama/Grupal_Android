@@ -22,6 +22,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.grupal_android.workers.GetPuntuationShopWorker;
 import com.example.grupal_android.workers.InsertarFotoWorker;
 import com.example.grupal_android.workers.ShopPhotoWorker;
 
@@ -60,6 +61,7 @@ public class ShopActivity extends MainActivity {
             botonImagen.setImageBitmap(bitmapredimensionado);
         }
         this.loadImage();
+        this.getPuntuation();
 
     }
 
@@ -201,6 +203,29 @@ public class ShopActivity extends MainActivity {
                                 e.printStackTrace();
                             }
 
+                        }
+                    }
+                });
+        WorkManager.getInstance(this).enqueue(otwr);
+    }
+
+    private void getPuntuation(){
+        Data datos = new Data.Builder()
+                .putString("nameFranchise", nameFranchise)
+                .putString("lat", lat)
+                .putString("lng", lng)
+                .build();
+        OneTimeWorkRequest otwr = new OneTimeWorkRequest.Builder(GetPuntuationShopWorker.class).setInputData(datos).build();
+        WorkManager.getInstance(this).getWorkInfoByIdLiveData(otwr.getId())
+                .observe(this, new Observer<WorkInfo>() {
+                    @Override
+                    public void onChanged(WorkInfo workInfo) {
+                        if (workInfo != null && workInfo.getState().isFinished()) {
+                            if (workInfo != null && workInfo.getState().isFinished()) {
+                                TextView votos = findViewById(R.id.votesLabel);
+                                String puntos = workInfo.getOutputData().getString("puntuation");
+                                votos.setText(puntos);
+                            }
                         }
                     }
                 });
