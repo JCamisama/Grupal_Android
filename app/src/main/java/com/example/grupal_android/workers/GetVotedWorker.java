@@ -2,12 +2,7 @@ package com.example.grupal_android.workers;
 
 
 
-import static com.example.grupal_android.utils.GlobalVariablesUtil.FRANCHISE_NAME;
-
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Base64;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -15,12 +10,7 @@ import androidx.work.Data;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
-import com.example.grupal_android.managers.FranchiseManager;
-import com.example.grupal_android.models.Franchise;
 import com.example.grupal_android.utils.GlobalVariablesUtil;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -31,8 +21,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class GetPuntuationShopWorker extends Worker {
-    public GetPuntuationShopWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
+public class GetVotedWorker extends Worker {
+    public GetVotedWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
     }
 
@@ -43,13 +33,15 @@ public class GetPuntuationShopWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        //String direccion = GlobalVariablesUtil.REMOTE_SERVER+"/"+GlobalVariablesUtil.GET_SHOP_PUNTUATION;
-        String direccion = "http://ec2-52-56-170-196.eu-west-2.compute.amazonaws.com/jmartin213/WEB"+"/"+GlobalVariablesUtil.GET_SHOP_PUNTUATION;
+        //String direccion = GlobalVariablesUtil.REMOTE_SERVER+"/"+GlobalVariablesUtil.GET_VOTED;
+        String direccion = "http://ec2-52-56-170-196.eu-west-2.compute.amazonaws.com/jmartin213/WEB"+"/"+GlobalVariablesUtil.GET_VOTED;
         HttpURLConnection urlConnection;
+        String username = getInputData().getString("username");
         String nameFranchise = getInputData().getString("nameFranchise");
         String lat = getInputData().getString("lat");
         String lng = getInputData().getString("lng");
-        String parametros = "nameFranchise="+nameFranchise+"&lat="+lat+"&lng="+lng;
+
+        String parametros = "username=" + username + "&nameFranchise=" + nameFranchise + "&lat=" + lat + "&lng=" + lng;
 
         try {
             URL destino = new URL(direccion);
@@ -73,7 +65,7 @@ public class GetPuntuationShopWorker extends Worker {
                 inputStream.close();
 
                 Data resultados = new Data.Builder()
-                        .putString("puntuation",result)
+                        .putString("voted",result)
                         .build();
 
                 return Result.success(resultados);
