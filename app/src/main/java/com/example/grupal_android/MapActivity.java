@@ -165,7 +165,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                                     latitud = Double.parseDouble(arrLat[i]);
                                     longitud = Double.parseDouble(arrLon[i]);
                                     if (ubication) {
-                                        if (latitud < latitudG + 2 && latitud > latitudG - 2 && longitud < longitudG + 2 && longitud > longitudG - 2) {
+                                        if (latitud < latitudG + 0.40 && latitud > latitudG -  0.40 && longitud < longitudG +  0.40 && longitud > longitudG -  0.40) {
                                             googleMap.addMarker(new MarkerOptions().position(new LatLng(latitud, longitud)).title(arrN[i]));
                                         }
                                     } else {
