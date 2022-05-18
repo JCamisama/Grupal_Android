@@ -191,21 +191,47 @@ public class ShopActivity extends MainActivity {
      * Cuando alguien da un boto positivo, se actualizan los puntos y el voto del usuario.
      */
     public void onClickLike(View v){
-        voted = 1;
         if (startVote != ""){
-            newPoints = puntos + voted;
-            puntos += voted;
-            votos.setText(Integer.toString(newPoints));
+            if (likeBtn.getBackground().getAlpha() == 255){
+                voted = -1;
+                newPoints = puntos + voted;
+                puntos += voted;
+                votos.setText(Integer.toString(newPoints));
+                voted = 0;
+                likeBtn.getBackground().setAlpha(89);
+                unlikeBtn.setEnabled(true);
+            }
+            else{
+                voted = 1;
+                newPoints = puntos + voted;
+                puntos += voted;
+                votos.setText(Integer.toString(newPoints));
+                unlikeBtn.setEnabled(false);
+                this.like();
+            }
         }
         else{
-            newPoints = puntos + voted;
-            votos.setText(Integer.toString(newPoints));
+            if (likeBtn.getBackground().getAlpha() == 255){
+                voted = -1;
+                newPoints = puntos + voted;
+                votos.setText(Integer.toString(newPoints));
+                voted = 0;
+                likeBtn.getBackground().setAlpha(89);
+                unlikeBtn.setEnabled(true);
+            }
+            else{
+                voted = 1;
+                newPoints = puntos + voted;
+                votos.setText(Integer.toString(newPoints));
+                unlikeBtn.setEnabled(false);
+                this.like();
+            }
+
         }
         this.insertVote();
         this.updateVote();
         this.updatePuntuation();
 
-        this.like();
     }
 
     /**
@@ -213,30 +239,53 @@ public class ShopActivity extends MainActivity {
      */
 
     public void onClickDislike(View v){
-        voted = -1;
         if (startVote != ""){
-            newPoints = puntos + voted;
-            puntos += voted;
-            votos.setText(Integer.toString(newPoints));
+            if (unlikeBtn.getBackground().getAlpha() == 255){
+                voted = 1;
+                newPoints = puntos + voted;
+                puntos += voted;
+                votos.setText(Integer.toString(newPoints));
+                voted = 0;
+                unlikeBtn.getBackground().setAlpha(89);
+                likeBtn.setEnabled(true);
+            }
+            else{
+                voted = -1;
+                newPoints = puntos + voted;
+                puntos += voted;
+                votos.setText(Integer.toString(newPoints));
+                likeBtn.setEnabled(false);
+                this.unlike();
+            }
         }
         else{
-            newPoints = puntos + voted;
-            votos.setText(Integer.toString(newPoints));
+            if (unlikeBtn.getBackground().getAlpha() == 255){
+                voted = 1;
+                newPoints = puntos + voted;
+                votos.setText(Integer.toString(newPoints));
+                voted = 0;
+                unlikeBtn.getBackground().setAlpha(89);
+                likeBtn.setEnabled(true);
+            }
+            else{
+                voted = -1;
+                newPoints = puntos + voted;
+                votos.setText(Integer.toString(newPoints));
+                likeBtn.setEnabled(false);
+                this.unlike();
+            }
+
         }
         this.insertVote();
         this.updateVote();
         this.updatePuntuation();
-
-        this.unlike();
     }
 
     /**
      * Marca el botón del like y lo desactiva para que no puedan botar mas.
      * */
     private void like(){
-        likeBtn.setEnabled(false);
         likeBtn.getBackground().setAlpha(255);
-        unlikeBtn.setEnabled(true);
         unlikeBtn.getBackground().setAlpha(89);
     }
 
@@ -245,9 +294,7 @@ public class ShopActivity extends MainActivity {
      * */
 
     private void unlike(){
-        unlikeBtn.setEnabled(false);
         unlikeBtn.getBackground().setAlpha(255);
-        likeBtn.setEnabled(true);
         likeBtn.getBackground().setAlpha(89);
     }
 
@@ -390,9 +437,11 @@ public class ShopActivity extends MainActivity {
                                 if (startVote != ""){
                                     if(Integer.parseInt(startVote) > 0){
                                         like();
+                                        unlikeBtn.setEnabled(false);
                                     }
                                     else if (Integer.parseInt(startVote) < 0){
                                         unlike();
+                                        likeBtn.setEnabled(false);
                                     }
                                 }
 
