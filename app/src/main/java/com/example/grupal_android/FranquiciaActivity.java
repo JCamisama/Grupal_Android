@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ public class FranquiciaActivity extends MainActivity {
     private TextView tipo;
     private TextView desc;
     private ImageView logo;
+    private Button btnMapa;
 
     /**
      *  Crear la actividad y vincular con la actividad correspondiente
@@ -86,6 +88,7 @@ public class FranquiciaActivity extends MainActivity {
             tipo = findViewById(R.id.tipoFranq2);
             desc = findViewById(R.id.descripcion2);
             logo = findViewById(R.id.logo2);
+            btnMapa = findViewById(R.id.mapa2);
 
         } else {
 
@@ -93,6 +96,7 @@ public class FranquiciaActivity extends MainActivity {
             tipo = findViewById(R.id.tipoFranq);
             desc = findViewById(R.id.descripcion);
             logo = findViewById(R.id.logo);
+            btnMapa = findViewById(R.id.mapa);
 
         }
 
@@ -110,11 +114,13 @@ public class FranquiciaActivity extends MainActivity {
 
             tipo.setText(getString(R.string.tipo)+": " + franquicia.getType_EN());
             desc.setText(franquicia.getDescription_EN());
+            btnMapa.setText("Map");
 
         } else if (LanguageManager.getInstance(this).getCurrentLanguageCodeFromPreferences().equals("es")){
 
             tipo.setText(getString(R.string.tipo)+": " + franquicia.getType_ES());
             desc.setText(franquicia.getDescription_ES());
+            btnMapa.setText("Mapa");
 
         }
 
