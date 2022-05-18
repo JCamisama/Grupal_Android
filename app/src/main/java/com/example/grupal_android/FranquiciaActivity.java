@@ -118,11 +118,13 @@ public class FranquiciaActivity extends MainActivity {
 
             texto = type+": " + franquicia.getType_EN();
             tipo.setText(texto);
+            desc.setText(franquicia.getDescription_EN());
 
         } else if (LanguageManager.getInstance(this).getCurrentLanguageCodeFromPreferences().equals("es")){
 
             texto = type+": " + franquicia.getType_ES();
             tipo.setText(texto);
+            desc.setText(franquicia.getDescription_ES());
 
         }
 
