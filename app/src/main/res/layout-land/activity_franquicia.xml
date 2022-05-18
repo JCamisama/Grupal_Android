@@ -33,7 +33,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="32dp"
         android:onClick="onMapa"
-        android:text="Mapa"
+        android:text="@string/map"
         app:layout_constraintStart_toStartOf="@+id/web2"
         app:layout_constraintTop_toBottomOf="@+id/web2" />
 

@@ -20,7 +20,7 @@ public class FranquiciaListActivity extends MainActivity {
         super.initializeMenuBar();
 
         simpleList = (ListView) findViewById(R.id.simpleListView);
-        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), this.getApplicationContext());
+        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), this);
         simpleList.setAdapter(customAdapter);
 
         simpleList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

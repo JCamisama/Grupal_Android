@@ -86,13 +86,18 @@ public class CustomAdapter extends BaseAdapter {
         fran = this.franquiciaList.get(i);
         franquicia.setText(fran.getName());
 
+        String type = this.context.getString(R.string.tipo);
+        String texto;
+
         if (LanguageManager.getInstance(this.context).getCurrentLanguageCodeFromPreferences().equals("en")){
 
-            tipo.setText(this.context.getString(R.string.tipo)+": " + fran.getType_EN());
+            texto = type+": " + fran.getType_EN();
+            tipo.setText(texto);
 
         } else if (LanguageManager.getInstance(this.context).getCurrentLanguageCodeFromPreferences().equals("es")){
 
-            tipo.setText(this.context.getString(R.string.tipo)+": " + fran.getType_ES());
+            texto = type+": " + fran.getType_ES();
+            tipo.setText(texto);
 
         }
 
