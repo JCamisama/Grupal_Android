@@ -148,30 +148,32 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                 .observe(this, new Observer<WorkInfo>() {
                     @Override
                     public void onChanged(WorkInfo workInfo) {
-                        if(workInfo != null && workInfo.getState().isFinished()){
+                        if(workInfo != null && workInfo.getState().isFinished()) {
                             Double latitud;
                             Double longitud;
                             String nombres = workInfo.getOutputData().getString("datosN");
-                            nombres = nombres.substring(1, nombres.length()-1);
-                            String[] arrN = nombres.split(", ");
-                            String latitudes = workInfo.getOutputData().getString("datosLat");
-                            latitudes = latitudes.substring(1, latitudes.length()-1);
-                            String[] arrLat = latitudes.split(", ");
-                            String longitudes = workInfo.getOutputData().getString("datosLon");
-                            longitudes = longitudes.substring(1, longitudes.length()-1);
-                            String[] arrLon = longitudes.split(", ");
-                            for(int i =0; i<arrLat.length;i++){
-                                latitud = Double.parseDouble(arrLat[i]);
-                                longitud = Double.parseDouble(arrLon[i]);
-                                if(ubication){
-                                    if(latitud<latitudG+2 && latitud>latitudG-2 && longitud<longitudG+2 && longitud>longitudG-2){
+                            if (!nombres.equalsIgnoreCase("[]")) {
+                                nombres = nombres.substring(1, nombres.length() - 1);
+                                String[] arrN = nombres.split(", ");
+                                String latitudes = workInfo.getOutputData().getString("datosLat");
+                                latitudes = latitudes.substring(1, latitudes.length() - 1);
+                                String[] arrLat = latitudes.split(", ");
+                                String longitudes = workInfo.getOutputData().getString("datosLon");
+                                longitudes = longitudes.substring(1, longitudes.length() - 1);
+                                String[] arrLon = longitudes.split(", ");
+                                for (int i = 0; i < arrLat.length; i++) {
+                                    latitud = Double.parseDouble(arrLat[i]);
+                                    longitud = Double.parseDouble(arrLon[i]);
+                                    if (ubication) {
+                                        if (latitud < latitudG + 2 && latitud > latitudG - 2 && longitud < longitudG + 2 && longitud > longitudG - 2) {
+                                            googleMap.addMarker(new MarkerOptions().position(new LatLng(latitud, longitud)).title(arrN[i]));
+                                        }
+                                    } else {
                                         googleMap.addMarker(new MarkerOptions().position(new LatLng(latitud, longitud)).title(arrN[i]));
                                     }
-                                } else {
-                                    googleMap.addMarker(new MarkerOptions().position(new LatLng(latitud, longitud)).title(arrN[i]));
                                 }
-                            }
 
+                            }
                         }
                     }
                 });
