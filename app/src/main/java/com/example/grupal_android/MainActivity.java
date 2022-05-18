@@ -1,14 +1,22 @@
 package com.example.grupal_android;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
+import android.Manifest;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -17,8 +25,11 @@ import com.example.grupal_android.PreferencesActivity;
 import com.example.grupal_android.managers.CustomPreferencesManager;
 import com.example.grupal_android.managers.FranchiseManager;
 import com.example.grupal_android.managers.LanguageManager;
+import com.example.grupal_android.managers.MusicManager;
 import com.example.grupal_android.managers.SessionManager;
 import com.example.grupal_android.models.User;
+import com.example.grupal_android.receiver.MyReceiver;
+import com.example.grupal_android.services.MyService;
 import com.example.grupal_android.workers.AllUsersGetter;
 import com.example.grupal_android.workers.UserInsertWorker;
 
@@ -29,17 +40,43 @@ public class MainActivity extends AppCompatActivity {
     protected CustomPreferencesManager preferencesManager = null;
     protected SessionManager sessionManager = null;
     protected FranchiseManager frachiseManager = null;
+    protected MusicManager musicManager = null;
+    private Intent intent;
+    private MyService elservicio;
+    private ServiceConnection laconexion= new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            elservicio= ((MyService.miBinder)service).obtenServicio();
+        }
+        @Override
+        public void onServiceDisconnected(ComponentName name) { elservicio=null; }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            //EL PERMISO NO ESTÁ CONCEDIDO, PEDIRLO
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
+        }
+        Log.d("Hola","Antes");
+
+        IntentFilter filter = new IntentFilter("android.intent.action.PHONE_STATE");
+        MyReceiver receiver = new MyReceiver();
+        registerReceiver(receiver, filter);
+
+        intent = new Intent(this, MyService.class);
+
+
         this.languageManager = LanguageManager.getInstance(MainActivity.this);
         this.preferencesManager = CustomPreferencesManager.getInstance(MainActivity.this);
         this.sessionManager = SessionManager.getInstance(MainActivity.this);
         this.frachiseManager = FranchiseManager.getInstance(MainActivity.this);
+        this.musicManager = MusicManager.getInstance(MainActivity.this);
         this.manageCurrentAppLanguage();
+        this.musicManager.getMusic();
 
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();

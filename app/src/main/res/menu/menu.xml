@@ -13,9 +13,4 @@
         android:textColor="@color/white"
         app:showAsAction="never"/>
 
-<!--    <item-->
-<!--        android:id="@+id/logout"-->
-<!--        android:icon="@android:drawable/btn_star_big_on"-->
-<!--        android:title="@string/logout"-->
-<!--        app:showAsAction="never"/>-->
 </menu>

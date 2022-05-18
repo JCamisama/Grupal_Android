@@ -24,4 +24,7 @@
     <string name="noPer">Necesitas otorgar el permiso de la ubicacion para ver ubicaciones cerca tuyo</string>
     <string name="falloUbi">Fallo con la ubicacion</string>
     <string name="tipo">Tipo</string>
+    <string name="musica">Música</string>
+    <string name="musicaActiva">"¿Música activa?"</string>
+
 </resources>

@@ -16,6 +16,7 @@ public class PreferencesActivity extends MainActivity {
     }
 
     public void onClickDone(View view) {
+        super.musicManager.getMusic();
         finish();
     }
 }

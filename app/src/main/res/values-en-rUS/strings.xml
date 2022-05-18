@@ -25,4 +25,6 @@
     <string name="noPer">You have to grant the permisson of ubication to see the ubications near you</string>
     <string name="falloUbi">The ubication has failed</string>
     <string name="tipo">Type</string>
+    <string name="musica">Music</string>
+    <string name="musicaActiva">¿Música activa?</string>
 </resources>

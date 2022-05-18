@@ -12,6 +12,9 @@
             app:key="language"
             app:summary="@string/resumen_preferencias_idioma"
             app:title="@string/titulo_preferencias_idioma" />
+        <SwitchPreferenceCompat
+            app:key="musica"
+            app:title="@string/musicaActiva"/>
 
     </PreferenceCategory>
 </PreferenceScreen>
