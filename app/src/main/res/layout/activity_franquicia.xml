@@ -68,8 +68,9 @@
             android:id="@+id/descripcion"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
 
     </ScrollView>
 
