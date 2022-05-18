@@ -26,8 +26,7 @@ public class ActualizarPuntuacionWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        //String direccion = GlobalVariablesUtil.REMOTE_SERVER+"/"+GlobalVariablesUtil.INSERT_VOTED;
-        String direccion = "http://ec2-52-56-170-196.eu-west-2.compute.amazonaws.com/jmartin213/WEB" + "/" + GlobalVariablesUtil.UPDATE_PUNTUATION;
+        String direccion = GlobalVariablesUtil.REMOTE_SERVER+"/"+GlobalVariablesUtil.UPDATE_PUNTUATION;
         HttpURLConnection urlConnection;
         //Obtener los parámetros del Data
         String nameFranchise = getInputData().getString("nameFranchise");

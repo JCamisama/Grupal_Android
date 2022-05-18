@@ -33,8 +33,7 @@ public class GetVotedWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        //String direccion = GlobalVariablesUtil.REMOTE_SERVER+"/"+GlobalVariablesUtil.GET_VOTED;
-        String direccion = "http://ec2-52-56-170-196.eu-west-2.compute.amazonaws.com/jmartin213/WEB"+"/"+GlobalVariablesUtil.GET_VOTED;
+        String direccion = GlobalVariablesUtil.REMOTE_SERVER+"/"+GlobalVariablesUtil.GET_VOTED;
         HttpURLConnection urlConnection;
         String username = getInputData().getString("username");
         String nameFranchise = getInputData().getString("nameFranchise");

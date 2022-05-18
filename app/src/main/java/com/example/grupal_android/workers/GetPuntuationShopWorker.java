@@ -43,8 +43,7 @@ public class GetPuntuationShopWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        //String direccion = GlobalVariablesUtil.REMOTE_SERVER+"/"+GlobalVariablesUtil.GET_SHOP_PUNTUATION;
-        String direccion = "http://ec2-52-56-170-196.eu-west-2.compute.amazonaws.com/jmartin213/WEB"+"/"+GlobalVariablesUtil.GET_SHOP_PUNTUATION;
+        String direccion = GlobalVariablesUtil.REMOTE_SERVER+"/"+GlobalVariablesUtil.GET_SHOP_PUNTUATION;
         HttpURLConnection urlConnection;
         String nameFranchise = getInputData().getString("nameFranchise");
         String lat = getInputData().getString("lat");

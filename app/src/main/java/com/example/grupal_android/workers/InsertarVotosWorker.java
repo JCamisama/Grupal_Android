@@ -38,8 +38,7 @@ public class InsertarVotosWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        //String direccion = GlobalVariablesUtil.REMOTE_SERVER+"/"+GlobalVariablesUtil.INSERT_VOTED;
-        String direccion = "http://ec2-52-56-170-196.eu-west-2.compute.amazonaws.com/jmartin213/WEB" + "/" + GlobalVariablesUtil.INSERT_VOTED;
+        String direccion = GlobalVariablesUtil.REMOTE_SERVER+"/"+GlobalVariablesUtil.INSERT_VOTED;
         HttpURLConnection urlConnection;
         //Obtener los parámetros del Data
         String username = getInputData().getString("username");
