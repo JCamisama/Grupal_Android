@@ -17,7 +17,6 @@ public class MyReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         // an Intent broadcast.
-        Log.d("Hola","Receive");
         telManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         telManager.listen(phoneListener, PhoneStateListener.LISTEN_CALL_STATE);
         MyService.miBinder binder = (MyService.miBinder) peekService(context, new Intent(context, MyService.class));
@@ -32,17 +31,13 @@ public class MyReceiver extends BroadcastReceiver {
         public void onCallStateChanged(int state, String incomingNumber) {
             try {
                 switch (state) {
-                    case TelephonyManager.CALL_STATE_RINGING: {
-                        //Tel�fono sonando
-                        Log.d("Hola","Hola");
-                        elservicio.parar();
-                        break;
-                    }
+                    case TelephonyManager.CALL_STATE_RINGING:
                     case TelephonyManager.CALL_STATE_OFFHOOK: {
-                        //Tel�fono descolgado
+                        //Tel�fono sonando
+
                         elservicio.parar();
                         break;
-                    }
+                    }//Tel�fono descolgado
                     case TelephonyManager.CALL_STATE_IDLE: {
                         //Tel�fono inactivo
 

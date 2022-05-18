@@ -52,7 +52,6 @@ public class MusicManager {
         //IntentFilter filter = new IntentFilter("android.intent.action.PHONE_STATE");
         //MyReceiver receiver = new MyReceiver();
         //this.myContext.registerReceiver(receiver, filter);
-        Log.d("aaaaaa","music");
 
 
         intent = new Intent(this.myContext, MyService.class);
@@ -76,12 +75,9 @@ public class MusicManager {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.myContext);
 //        String languagePreferenceName = CustomPreferences.languagePreferenceName;
 //        String currentLanguagePreference = prefs.getString(languagePreferenceName, defaultLanguage);
-        Log.d("aaaaaa","nada");
         if (prefs.getBoolean("musica", false)) {
-            Log.d("aaaaaa","musictrue");
             this.onServicio();
         } else {
-            Log.d("aaaaaa","musicfalse");
 
             this.onParar();
         }

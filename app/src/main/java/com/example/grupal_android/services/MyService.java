@@ -29,12 +29,11 @@ public class MyService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        player=MediaPlayer.create(getApplicationContext(), R.raw.monamour);
+        player=MediaPlayer.create(getApplicationContext(), R.raw.jumper);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d("aaaaaa","musicser");
 
         player.start();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

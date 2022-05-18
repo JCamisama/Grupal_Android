@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
             //EL PERMISO NO ESTÁ CONCEDIDO, PEDIRLO
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
         }
-        Log.d("Hola","Antes");
 
         IntentFilter filter = new IntentFilter("android.intent.action.PHONE_STATE");
         MyReceiver receiver = new MyReceiver();
