@@ -26,5 +26,5 @@
     <string name="falloUbi">Fallo con la ubicacion</string>
     <string name="tipo">Tipo</string>
     <string name="musica">Música</string>
-    <string name="musicaActiva">Active music?</string>
+    <string name="musicaActiva">¿Música activa?</string>
 </resources>
