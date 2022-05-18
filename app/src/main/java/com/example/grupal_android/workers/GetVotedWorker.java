@@ -27,7 +27,7 @@ public class GetVotedWorker extends Worker {
     }
 
     /**
-     * Método encargado en llamar al php encargado de conseguir el todos los atributos de una franquicia por el nombre de la misma
+     * Método que llamara al php que su funcion es coger el voto de un usuario en una tienda específica.
      */
 
     @NonNull

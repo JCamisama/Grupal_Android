@@ -20,7 +20,7 @@ public class ActualizarVotosWorker extends Worker {
     }
 
     /**
-     *  Método que llamara al php que su funcion es meter una foto de sacada por el usuario
+     *  Método que llamara al php que su funcion es actualizar el voto de un usuario en una tienda específica.
      */
     @NonNull
     @Override

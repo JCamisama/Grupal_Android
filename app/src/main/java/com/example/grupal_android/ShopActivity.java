@@ -187,6 +187,9 @@ public class ShopActivity extends MainActivity {
 
     }
 
+    /**
+     * Cuando alguien da un boto positivo, se actualizan los puntos y el voto del usuario.
+     */
     public void onClickLike(View v){
         voted = 1;
         if (startVote != ""){
@@ -205,6 +208,9 @@ public class ShopActivity extends MainActivity {
         this.like();
     }
 
+    /**
+     * Cuando alguien da un boto negativo, se actualizan los puntos y el voto del usuario.
+     */
 
     public void onClickDislike(View v){
         voted = -1;
@@ -224,6 +230,9 @@ public class ShopActivity extends MainActivity {
         this.unlike();
     }
 
+    /**
+     * Marca el botón del like y lo desactiva para que no puedan botar mas.
+     * */
     private void like(){
         likeBtn.setEnabled(false);
         likeBtn.getBackground().setAlpha(255);
@@ -231,12 +240,20 @@ public class ShopActivity extends MainActivity {
         unlikeBtn.getBackground().setAlpha(89);
     }
 
+    /**
+     * Marca el botón del dislike y lo desactiva para que no puedan botar mas.
+     * */
+
     private void unlike(){
         unlikeBtn.setEnabled(false);
         unlikeBtn.getBackground().setAlpha(255);
         likeBtn.setEnabled(true);
         likeBtn.getBackground().setAlpha(89);
     }
+
+    /**
+     * Carga la foto y si ya hay una, no deja hacer clic en el imageButton
+     * */
 
     private void loadImage(){
         Data datos = new Data.Builder()
@@ -280,6 +297,10 @@ public class ShopActivity extends MainActivity {
         WorkManager.getInstance(this).enqueue(otwr);
     }
 
+    /**
+     * Se usa para coger la puntuación total de la tienda
+     * */
+
     private void getPuntuation(){
         Data datos = new Data.Builder()
                 .putString("nameFranchise", nameFranchise)
@@ -302,6 +323,10 @@ public class ShopActivity extends MainActivity {
         WorkManager.getInstance(this).enqueue(otwr);
     }
 
+    /**
+     * Se usa para actualizar la puntuación total de la tienda
+     * */
+
     private void updatePuntuation() {
         Data datos = new Data.Builder()
                 .putString("nameFranchise", nameFranchise)
@@ -312,6 +337,10 @@ public class ShopActivity extends MainActivity {
         OneTimeWorkRequest otwr = new OneTimeWorkRequest.Builder(ActualizarPuntuacionWorker.class).setInputData(datos).build();
         WorkManager.getInstance(this).enqueue(otwr);
     }
+
+    /**
+     * Se usa para instertar el voto del usuario logeado en una tienda en concreto
+     * */
 
     private void insertVote(){
         Data datos = new Data.Builder()
@@ -325,6 +354,10 @@ public class ShopActivity extends MainActivity {
         WorkManager.getInstance(this).enqueue(otwr);
     }
 
+    /**
+     * Se usa para actualizar el voto del usuario logeado en una tienda en concreto
+     * */
+
     private void updateVote(){
         Data datos = new Data.Builder()
                 .putString("username", username)
@@ -337,6 +370,9 @@ public class ShopActivity extends MainActivity {
         WorkManager.getInstance(this).enqueue(otwr);
     }
 
+    /**
+     * Se usa para coger el voto del usuario logeado en una tienda en concreto.
+     * */
     private void getVote() {
         Data datos = new Data.Builder()
                 .putString("username", username)

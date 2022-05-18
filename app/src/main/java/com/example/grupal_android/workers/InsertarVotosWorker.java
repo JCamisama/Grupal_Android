@@ -33,7 +33,7 @@ public class InsertarVotosWorker extends Worker {
     }
 
     /**
-     *  Método que llamara al php que su funcion es meter una foto de sacada por el usuario
+     *  Método que llamara al php que su funcion es insertar el voto de un usuario en una tienda específica.
      */
     @NonNull
     @Override

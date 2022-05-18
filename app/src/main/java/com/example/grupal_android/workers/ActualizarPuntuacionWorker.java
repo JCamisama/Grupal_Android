@@ -21,7 +21,7 @@ public class ActualizarPuntuacionWorker extends Worker {
     }
 
     /**
-     *  Método que llamara al php que su funcion es meter una foto de sacada por el usuario
+     *  Método que llamara al php que su funcion es actualizar la puntuación total de una tienda
      */
     @NonNull
     @Override
