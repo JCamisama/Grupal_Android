@@ -53,7 +53,7 @@ public class ShopActivity extends MainActivity {
     private String lat = null;
     private String lng = null;
     private int voted = 0;
-    private String startVote = null;
+    private String startVote = "";
     private int puntos = 0;
     private int newPoints = 0;
     ImageButton likeBtn;
@@ -189,12 +189,18 @@ public class ShopActivity extends MainActivity {
 
     public void onClickLike(View v){
         voted = 1;
-        newPoints = puntos + voted;
-        votos.setText(Integer.toString(newPoints));
+        if (startVote != ""){
+            newPoints = puntos + voted;
+            puntos += voted;
+            votos.setText(Integer.toString(newPoints));
+        }
+        else{
+            newPoints = puntos + voted;
+            votos.setText(Integer.toString(newPoints));
+        }
         this.insertVote();
         this.updateVote();
         this.updatePuntuation();
-
 
         this.like();
     }
@@ -202,12 +208,18 @@ public class ShopActivity extends MainActivity {
 
     public void onClickDislike(View v){
         voted = -1;
-        newPoints = puntos + voted;
-        votos.setText(Integer.toString(newPoints));
+        if (startVote != ""){
+            newPoints = puntos + voted;
+            puntos += voted;
+            votos.setText(Integer.toString(newPoints));
+        }
+        else{
+            newPoints = puntos + voted;
+            votos.setText(Integer.toString(newPoints));
+        }
         this.insertVote();
         this.updateVote();
         this.updatePuntuation();
-
 
         this.unlike();
     }
@@ -339,14 +351,13 @@ public class ShopActivity extends MainActivity {
                     public void onChanged(WorkInfo workInfo) {
                         if (workInfo != null && workInfo.getState().isFinished()) {
                                 startVote = workInfo.getOutputData().getString("voted");
-                                Log.d("ad", startVote);
-                                if (startVote != null){
-                                  /*  if(Integer.parseInt(startVote) > 0){
+                                if (startVote != ""){
+                                    if(Integer.parseInt(startVote) > 0){
                                         like();
                                     }
                                     else if (Integer.parseInt(startVote) < 0){
                                         unlike();
-                                    }*/
+                                    }
                                 }
 
                         }
