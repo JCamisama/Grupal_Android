@@ -1,7 +1,5 @@
 package com.example.grupal_android;
 
-import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import androidx.lifecycle.Observer;
 import androidx.work.Data;
@@ -16,13 +14,20 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.grupal_android.managers.SessionManager;
+import com.example.grupal_android.workers.ActualizarVotosWorker;
+import com.example.grupal_android.workers.GetPuntuationShopWorker;
+import com.example.grupal_android.workers.GetVotedWorker;
 import com.example.grupal_android.workers.InsertarFotoWorker;
+import com.example.grupal_android.workers.ActualizarPuntuacionWorker;
+import com.example.grupal_android.workers.InsertarVotosWorker;
 import com.example.grupal_android.workers.ShopPhotoWorker;
 
 import java.io.BufferedReader;
@@ -43,9 +48,17 @@ public class ShopActivity extends MainActivity {
     private static final int CODIGO_FOTO_ARCHIVO = 1;
     private Uri uriimagen = null;
     private Bitmap bitmapredimensionado = null;
+    private String username = null;
     private String nameFranchise = null;
     private String lat = null;
     private String lng = null;
+    private int voted = 0;
+    private String startVote = "";
+    private int puntos = 0;
+    private int newPoints = 0;
+    ImageButton likeBtn;
+    ImageButton unlikeBtn;
+    TextView votos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +67,23 @@ public class ShopActivity extends MainActivity {
         super.initializeMenuBar();
         this.initializeElements();
         this.handleExtras();
+
+        SessionManager sessionManager = SessionManager.getInstance(this);
+        username = sessionManager.getCurrentUsername();
+        votos = findViewById(R.id.votesLabel);
+        likeBtn = findViewById(R.id.likeButton);
+        likeBtn.getBackground().setAlpha(89);
+        unlikeBtn = findViewById(R.id.unlikeButton);
+        unlikeBtn.getBackground().setAlpha(89);
+
         //Conseguir imagen para el ImageButton en caso de girar la pantalla por ejemplo
         if (savedInstanceState != null){
             bitmapredimensionado = savedInstanceState.getParcelable("bitmap");
             botonImagen.setImageBitmap(bitmapredimensionado);
         }
         this.loadImage();
-
+        this.getPuntuation();
+        this.getVote();
     }
 
     @Override
@@ -162,8 +185,75 @@ public class ShopActivity extends MainActivity {
         elIntent.putExtra(MediaStore.EXTRA_OUTPUT, uriimagen);
         startActivityForResult(elIntent, CODIGO_FOTO_ARCHIVO);
 
-
     }
+
+    /**
+     * Cuando alguien da un boto positivo, se actualizan los puntos y el voto del usuario.
+     */
+    public void onClickLike(View v){
+        voted = 1;
+        if (startVote != ""){
+            newPoints = puntos + voted;
+            puntos += voted;
+            votos.setText(Integer.toString(newPoints));
+        }
+        else{
+            newPoints = puntos + voted;
+            votos.setText(Integer.toString(newPoints));
+        }
+        this.insertVote();
+        this.updateVote();
+        this.updatePuntuation();
+
+        this.like();
+    }
+
+    /**
+     * Cuando alguien da un boto negativo, se actualizan los puntos y el voto del usuario.
+     */
+
+    public void onClickDislike(View v){
+        voted = -1;
+        if (startVote != ""){
+            newPoints = puntos + voted;
+            puntos += voted;
+            votos.setText(Integer.toString(newPoints));
+        }
+        else{
+            newPoints = puntos + voted;
+            votos.setText(Integer.toString(newPoints));
+        }
+        this.insertVote();
+        this.updateVote();
+        this.updatePuntuation();
+
+        this.unlike();
+    }
+
+    /**
+     * Marca el botón del like y lo desactiva para que no puedan botar mas.
+     * */
+    private void like(){
+        likeBtn.setEnabled(false);
+        likeBtn.getBackground().setAlpha(255);
+        unlikeBtn.setEnabled(true);
+        unlikeBtn.getBackground().setAlpha(89);
+    }
+
+    /**
+     * Marca el botón del dislike y lo desactiva para que no puedan botar mas.
+     * */
+
+    private void unlike(){
+        unlikeBtn.setEnabled(false);
+        unlikeBtn.getBackground().setAlpha(255);
+        likeBtn.setEnabled(true);
+        likeBtn.getBackground().setAlpha(89);
+    }
+
+    /**
+     * Carga la foto y si ya hay una, no deja hacer clic en el imageButton
+     * */
 
     private void loadImage(){
         Data datos = new Data.Builder()
@@ -206,5 +296,111 @@ public class ShopActivity extends MainActivity {
                 });
         WorkManager.getInstance(this).enqueue(otwr);
     }
+
+    /**
+     * Se usa para coger la puntuación total de la tienda
+     * */
+
+    private void getPuntuation(){
+        Data datos = new Data.Builder()
+                .putString("nameFranchise", nameFranchise)
+                .putString("lat", lat)
+                .putString("lng", lng)
+                .build();
+        OneTimeWorkRequest otwr = new OneTimeWorkRequest.Builder(GetPuntuationShopWorker.class).setInputData(datos).build();
+        WorkManager.getInstance(this).getWorkInfoByIdLiveData(otwr.getId())
+                .observe(this, new Observer<WorkInfo>() {
+                    @Override
+                    public void onChanged(WorkInfo workInfo) {
+                        if (workInfo != null && workInfo.getState().isFinished()) {
+                            TextView votos = findViewById(R.id.votesLabel);
+                            puntos = Integer.parseInt(workInfo.getOutputData().getString("puntuation"));
+                            votos.setText(Integer.toString(puntos));
+
+                        }
+                    }
+                });
+        WorkManager.getInstance(this).enqueue(otwr);
+    }
+
+    /**
+     * Se usa para actualizar la puntuación total de la tienda
+     * */
+
+    private void updatePuntuation() {
+        Data datos = new Data.Builder()
+                .putString("nameFranchise", nameFranchise)
+                .putString("lat", lat)
+                .putString("lng", lng)
+                .putString("points", String.valueOf(newPoints))
+                .build();
+        OneTimeWorkRequest otwr = new OneTimeWorkRequest.Builder(ActualizarPuntuacionWorker.class).setInputData(datos).build();
+        WorkManager.getInstance(this).enqueue(otwr);
+    }
+
+    /**
+     * Se usa para instertar el voto del usuario logeado en una tienda en concreto
+     * */
+
+    private void insertVote(){
+        Data datos = new Data.Builder()
+                .putString("username", username)
+                .putString("nameFranchise", nameFranchise)
+                .putString("lat", lat)
+                .putString("lng", lng)
+                .putInt("voted", voted)
+                .build();
+        OneTimeWorkRequest otwr = new OneTimeWorkRequest.Builder(InsertarVotosWorker.class).setInputData(datos).build();
+        WorkManager.getInstance(this).enqueue(otwr);
+    }
+
+    /**
+     * Se usa para actualizar el voto del usuario logeado en una tienda en concreto
+     * */
+
+    private void updateVote(){
+        Data datos = new Data.Builder()
+                .putString("username", username)
+                .putString("nameFranchise", nameFranchise)
+                .putString("lat", lat)
+                .putString("lng", lng)
+                .putInt("voted", voted)
+                .build();
+        OneTimeWorkRequest otwr = new OneTimeWorkRequest.Builder(ActualizarVotosWorker.class).setInputData(datos).build();
+        WorkManager.getInstance(this).enqueue(otwr);
+    }
+
+    /**
+     * Se usa para coger el voto del usuario logeado en una tienda en concreto.
+     * */
+    private void getVote() {
+        Data datos = new Data.Builder()
+                .putString("username", username)
+                .putString("nameFranchise", nameFranchise)
+                .putString("lat", lat)
+                .putString("lng", lng)
+                .build();
+        OneTimeWorkRequest otwr = new OneTimeWorkRequest.Builder(GetVotedWorker.class).setInputData(datos).build();
+        WorkManager.getInstance(this).getWorkInfoByIdLiveData(otwr.getId())
+                .observe(this, new Observer<WorkInfo>() {
+                    @Override
+                    public void onChanged(WorkInfo workInfo) {
+                        if (workInfo != null && workInfo.getState().isFinished()) {
+                                startVote = workInfo.getOutputData().getString("voted");
+                                if (startVote != ""){
+                                    if(Integer.parseInt(startVote) > 0){
+                                        like();
+                                    }
+                                    else if (Integer.parseInt(startVote) < 0){
+                                        unlike();
+                                    }
+                                }
+
+                        }
+                    }
+                });
+        WorkManager.getInstance(this).enqueue(otwr);
+    }
+
 
 }
