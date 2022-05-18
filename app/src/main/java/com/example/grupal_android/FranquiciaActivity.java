@@ -110,17 +110,19 @@ public class FranquiciaActivity extends MainActivity {
         tx.setText(franquicia.getName());
         logo.setImageBitmap(franquicia.getLogo());
 
+
+        String type = this.getString(R.string.tipo);
+        String texto;
+
         if (LanguageManager.getInstance(this).getCurrentLanguageCodeFromPreferences().equals("en")){
 
-            tipo.setText(getString(R.string.tipo)+": " + franquicia.getType_EN());
-            desc.setText(franquicia.getDescription_EN());
-            btnMapa.setText("Map");
+            texto = type+": " + franquicia.getType_EN();
+            tipo.setText(texto);
 
         } else if (LanguageManager.getInstance(this).getCurrentLanguageCodeFromPreferences().equals("es")){
 
-            tipo.setText(getString(R.string.tipo)+": " + franquicia.getType_ES());
-            desc.setText(franquicia.getDescription_ES());
-            btnMapa.setText("Mapa");
+            texto = type+": " + franquicia.getType_ES();
+            tipo.setText(texto);
 
         }
 

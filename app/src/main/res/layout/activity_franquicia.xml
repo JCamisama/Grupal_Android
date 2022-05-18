@@ -105,7 +105,7 @@
         android:layout_height="60dp"
         android:layout_marginEnd="76dp"
         android:onClick="onMapa"
-        android:text="Mapa"
+        android:text="@string/map"
         app:layout_constraintBottom_toBottomOf="@+id/web"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
