@@ -42,22 +42,30 @@
         style="@style/MyButtonStyle"
         android:layout_width="105dp"
         android:layout_height="60dp"
-        android:layout_marginStart="56dp"
+        android:layout_marginStart="16dp"
         android:onClick="onWeb"
         android:text="Web"
-        app:layout_constraintStart_toEndOf="@+id/descripcion2"
+        app:layout_constraintStart_toEndOf="@+id/scroller"
         app:layout_constraintTop_toTopOf="@+id/logo2" />
 
-    <TextView
-        android:id="@+id/descripcion2"
-        android:layout_width="180dp"
-        android:layout_height="157dp"
+    <ScrollView
+        android:id="@+id/scroller"
+        android:layout_width="237dp"
+        android:layout_height="180dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/white"
-        android:textSize="18sp"
+        android:scrollbars="vertical"
+        android:fillViewport="true"
         app:layout_constraintStart_toEndOf="@+id/logo2"
-        app:layout_constraintTop_toTopOf="@+id/logo2" />
+        app:layout_constraintTop_toTopOf="@+id/logo2" >
+
+        <TextView
+            android:id="@+id/descripcion2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+
+    </ScrollView>
 
     <ImageView
         android:id="@+id/logo2"
