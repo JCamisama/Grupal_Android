@@ -14,6 +14,10 @@ public class MyReceiver extends BroadcastReceiver {
     TelephonyManager telManager;
     MyService elservicio;
 
+
+    /**
+     *  Enlanzar el servicio con el recibidor
+     */
     @Override
     public void onReceive(Context context, Intent intent) {
         // an Intent broadcast.
@@ -26,6 +30,9 @@ public class MyReceiver extends BroadcastReceiver {
 
     }
 
+    /**
+     *  Dependiendo el estado del dispositivo hacer distintas funcionalidades
+     */
     private final PhoneStateListener phoneListener = new PhoneStateListener() {
         @Override
         public void onCallStateChanged(int state, String incomingNumber) {

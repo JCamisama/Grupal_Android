@@ -48,10 +48,10 @@ public class MusicManager {
     private MusicManager(Context pContext) {
         this.myContext = pContext;
 
-
-        //IntentFilter filter = new IntentFilter("android.intent.action.PHONE_STATE");
-        //MyReceiver receiver = new MyReceiver();
-        //this.myContext.registerReceiver(receiver, filter);
+        //Filtro para saber el estado del movil y mandar una señal al recibidor
+        IntentFilter filter = new IntentFilter("android.intent.action.PHONE_STATE");
+        MyReceiver receiver = new MyReceiver();
+        this.myContext.registerReceiver(receiver, filter);
 
 
         intent = new Intent(this.myContext, MyService.class);
@@ -69,12 +69,10 @@ public class MusicManager {
 
 
     /**
-     * Obtiene el idioma actual de la aplicación.
+     * Obtiene si el usuario quiere música o no y dependiendo del resultado se escuchara la canción o no
      */
     public void getMusic() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.myContext);
-//        String languagePreferenceName = CustomPreferences.languagePreferenceName;
-//        String currentLanguagePreference = prefs.getString(languagePreferenceName, defaultLanguage);
         if (prefs.getBoolean("musica", false)) {
             this.onServicio();
         } else {
@@ -84,13 +82,17 @@ public class MusicManager {
 
 
     }
-
+    /**
+     *  Iniciar la música
+     */
     public void onServicio() {
         this.myContext.bindService(intent, laconexion, Context.BIND_AUTO_CREATE);
         this.myContext.startService(intent);
         bound = true;
     }
-
+    /**
+     *  Parar la música
+     */
     public void onParar() {
         if (bound) {
             this.myContext.unbindService(laconexion);
@@ -99,16 +101,6 @@ public class MusicManager {
         }
 
     }
-//    private void changeCurrentLocale(String pCurrentLanguagePreference) {
-//        Locale newLocale = new Locale(pCurrentLanguagePreference);
-//        Locale.setDefault(newLocale);
-//        Configuration configuration = this.myContext.getResources().getConfiguration();
-//        configuration.setLocale(newLocale);
-//        configuration.setLayoutDirection(newLocale);
-//
-//        Resources resources = this.myContext.getResources();
-//        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
-//    }
 
 }
 

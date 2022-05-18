@@ -50,7 +50,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     private boolean ubication = false;
 
     /**
-     *  Conseguir todos los elementos del layout
+     *  Vincular el mapa con la actividad
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {

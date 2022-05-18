@@ -14,6 +14,9 @@ import android.util.Log;
 
 import com.example.grupal_android.R;
 
+/**
+ *  Servicio para la música
+ */
 
 public class MyService extends Service {
     private final IBinder elBinder= new miBinder();
@@ -26,12 +29,17 @@ public class MyService extends Service {
     public MyService() {
     }
 
+    /**
+     *  Seleccionar la cancion deseada al crear el servicio
+     */
     @Override
     public void onCreate() {
         super.onCreate();
         player=MediaPlayer.create(getApplicationContext(), R.raw.jumper);
     }
-
+    /**
+     *  Visualizar una notificación al iniciar el servicio
+     */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -40,7 +48,7 @@ public class MyService extends Service {
             NotificationManager elmanager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             NotificationChannel canalservicio = new NotificationChannel("IdCanal", "NombreCanal",NotificationManager.IMPORTANCE_LOW);
             elmanager.createNotificationChannel(canalservicio);
-            Notification.Builder builder = new Notification.Builder(this, "IdCanal").setContentTitle(getString(R.string.app_name)).setAutoCancel(false);
+            Notification.Builder builder = new Notification.Builder(this, "IdCanal").setContentTitle("ShopWorld").setAutoCancel(false);
             Notification notification = builder.build();
             startForeground(1, notification);
         }
@@ -48,16 +56,24 @@ public class MyService extends Service {
         return START_STICKY;
     }
 
-
+    /**
+     *  Enlazar el servicio
+     */
     public class miBinder extends Binder {
         public MyService obtenServicio(){
             return MyService.this;
         }
     }
+    /**
+     *  Parar la música
+     */
     public void parar(){
         player.pause();
     }
 
+    /**
+     *  Quitar la música
+     */
     @Override
     public void onDestroy() {
         player.release();
