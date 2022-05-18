@@ -191,42 +191,22 @@ public class ShopActivity extends MainActivity {
      * Cuando alguien da un boto positivo, se actualizan los puntos y el voto del usuario.
      */
     public void onClickLike(View v){
-        if (startVote != ""){
-            if (likeBtn.getBackground().getAlpha() == 255){
-                voted = -1;
-                newPoints = puntos + voted;
-                puntos += voted;
-                votos.setText(Integer.toString(newPoints));
-                voted = 0;
-                likeBtn.getBackground().setAlpha(89);
-                unlikeBtn.setEnabled(true);
-            }
-            else{
-                voted = 1;
-                newPoints = puntos + voted;
-                puntos += voted;
-                votos.setText(Integer.toString(newPoints));
-                unlikeBtn.setEnabled(false);
-                this.like();
-            }
+        if (likeBtn.getBackground().getAlpha() == 255){
+            voted = -1;
+            newPoints = puntos + voted;
+            puntos += voted;
+            votos.setText(Integer.toString(newPoints));
+            voted = 0;
+            likeBtn.getBackground().setAlpha(89);
+            unlikeBtn.setEnabled(true);
         }
         else{
-            if (likeBtn.getBackground().getAlpha() == 255){
-                voted = -1;
-                newPoints = puntos + voted;
-                votos.setText(Integer.toString(newPoints));
-                voted = 0;
-                likeBtn.getBackground().setAlpha(89);
-                unlikeBtn.setEnabled(true);
-            }
-            else{
-                voted = 1;
-                newPoints = puntos + voted;
-                votos.setText(Integer.toString(newPoints));
-                unlikeBtn.setEnabled(false);
-                this.like();
-            }
-
+            voted = 1;
+            newPoints = puntos + voted;
+            puntos += voted;
+            votos.setText(Integer.toString(newPoints));
+            unlikeBtn.setEnabled(false);
+            this.like();
         }
         this.insertVote();
         this.updateVote();
@@ -239,42 +219,22 @@ public class ShopActivity extends MainActivity {
      */
 
     public void onClickDislike(View v){
-        if (startVote != ""){
-            if (unlikeBtn.getBackground().getAlpha() == 255){
-                voted = 1;
-                newPoints = puntos + voted;
-                puntos += voted;
-                votos.setText(Integer.toString(newPoints));
-                voted = 0;
-                unlikeBtn.getBackground().setAlpha(89);
-                likeBtn.setEnabled(true);
-            }
-            else{
-                voted = -1;
-                newPoints = puntos + voted;
-                puntos += voted;
-                votos.setText(Integer.toString(newPoints));
-                likeBtn.setEnabled(false);
-                this.unlike();
-            }
+        if (unlikeBtn.getBackground().getAlpha() == 255){
+            voted = 1;
+            newPoints = puntos + voted;
+            puntos += voted;
+            votos.setText(Integer.toString(newPoints));
+            voted = 0;
+            unlikeBtn.getBackground().setAlpha(89);
+            likeBtn.setEnabled(true);
         }
         else{
-            if (unlikeBtn.getBackground().getAlpha() == 255){
-                voted = 1;
-                newPoints = puntos + voted;
-                votos.setText(Integer.toString(newPoints));
-                voted = 0;
-                unlikeBtn.getBackground().setAlpha(89);
-                likeBtn.setEnabled(true);
-            }
-            else{
-                voted = -1;
-                newPoints = puntos + voted;
-                votos.setText(Integer.toString(newPoints));
-                likeBtn.setEnabled(false);
-                this.unlike();
-            }
-
+            voted = -1;
+            newPoints = puntos + voted;
+            puntos += voted;
+            votos.setText(Integer.toString(newPoints));
+            likeBtn.setEnabled(false);
+            this.unlike();
         }
         this.insertVote();
         this.updateVote();
