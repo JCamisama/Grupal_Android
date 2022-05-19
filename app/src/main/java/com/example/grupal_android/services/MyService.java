@@ -30,6 +30,9 @@ public class MyService extends Service {
     }
     public MyService() {
     }
+    /**
+     *  Parar la música al estar en segundo plano
+     */
     @Override
     public void onTaskRemoved(Intent rootIntent) {
         player.release();
