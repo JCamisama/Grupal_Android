@@ -91,12 +91,19 @@ public class MainActivity extends AppCompatActivity implements LifecycleObserver
         StrictMode.setThreadPolicy(policy);
     }
     /**
-     * Parar la música al estar en segundo plano
+     *  Parar la música al estar en segundo plano
      */
-
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     public void onAppBackgrounded() {
         this.musicManager.onParar();
+    }
+
+    /**
+     *  Volver a poner música segun tus preferencias
+     */
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    public void onAppForegrounded() {
+        this.musicManager.getMusic();
     }
 
 
