@@ -26,6 +26,6 @@
     <string name="falloUbi">The ubication has failed</string>
     <string name="tipo">Type</string>
     <string name="musica">Music</string>
-    <string name="musicaActiva">Active music?</string>
+    <string name="musicaActiva">Activate music?</string>
     <string name="map">Map</string>
 </resources>
