@@ -16,6 +16,9 @@ import android.view.View;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.preference.PreferenceManager;
 
 import com.example.grupal_android.preferencias.CustomPreferences;
@@ -57,9 +60,11 @@ public class MusicManager {
         intent = new Intent(this.myContext, MyService.class);
     }
 
-    public static synchronized MusicManager getInstance(Context pContext) {
+    public static synchronized MusicManager getInstance(Context pContext, LifecycleObserver lifecycleObserver) {
         if (MusicManager.instance == null) {
             MusicManager.instance = new MusicManager(pContext);
+            ProcessLifecycleOwner.get().getLifecycle().addObserver(lifecycleObserver);
+
 
         }
 
@@ -76,7 +81,6 @@ public class MusicManager {
         if (prefs.getBoolean("musica", false)) {
             this.onServicio();
         } else {
-
             this.onParar();
         }
 

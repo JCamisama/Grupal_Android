@@ -3,6 +3,10 @@ package com.example.grupal_android;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.OnLifecycleEvent;
+import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
@@ -37,7 +41,7 @@ import com.example.grupal_android.workers.UserInsertWorker;
 
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LifecycleObserver {
 
     protected String currentActivityLanguage = "";
     protected LanguageManager languageManager = null;
@@ -61,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
             //EL PERMISO NO ESTÁ CONCEDIDO, PEDIRLO
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
@@ -77,13 +82,22 @@ public class MainActivity extends AppCompatActivity {
         this.preferencesManager = CustomPreferencesManager.getInstance(MainActivity.this);
         this.sessionManager = SessionManager.getInstance(MainActivity.this);
         this.frachiseManager = FranchiseManager.getInstance(MainActivity.this);
-        this.musicManager = MusicManager.getInstance(MainActivity.this);
+        this.musicManager = MusicManager.getInstance(MainActivity.this,this);
         this.manageCurrentAppLanguage();
         this.musicManager.getMusic();
 
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+    }
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    public void onAppBackgrounded() {
+        this.musicManager.onParar();
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    public void onAppForegrounded() {
+        this.musicManager.onServicio();
     }
 
 
@@ -220,4 +234,5 @@ public class MainActivity extends AppCompatActivity {
         Resources resources = this.getResources();
         resources.updateConfiguration(configuration, resources.getDisplayMetrics());
     }
+
 }

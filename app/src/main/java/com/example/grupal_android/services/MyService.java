@@ -12,6 +12,8 @@ import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
 
+import androidx.lifecycle.ProcessLifecycleOwner;
+
 import com.example.grupal_android.R;
 
 /**
@@ -27,6 +29,10 @@ public class MyService extends Service {
         return elBinder;
     }
     public MyService() {
+    }
+    @Override
+    public void onTaskRemoved(Intent rootIntent) {
+        player.release();
     }
 
     /**
