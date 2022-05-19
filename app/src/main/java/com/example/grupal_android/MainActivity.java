@@ -13,6 +13,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.StrictMode;
@@ -32,6 +34,8 @@ import com.example.grupal_android.receiver.MyReceiver;
 import com.example.grupal_android.services.MyService;
 import com.example.grupal_android.workers.AllUsersGetter;
 import com.example.grupal_android.workers.UserInsertWorker;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -69,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         intent = new Intent(this, MyService.class);
 
 
-        this.languageManager = LanguageManager.getInstance(MainActivity.this);
+        this.languageManager = LanguageManager.getInstance(this);
         this.preferencesManager = CustomPreferencesManager.getInstance(MainActivity.this);
         this.sessionManager = SessionManager.getInstance(MainActivity.this);
         this.frachiseManager = FranchiseManager.getInstance(MainActivity.this);
@@ -88,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         // Comprobar si al volver a la pantalla ha cambiado el idioma.
         if (this.languageManager.hasLanguageChanged(this.currentActivityLanguage)) {
+            this.changeCurrentLocale(this.languageManager.getCurrentLanguageCodeFromPreferences());
             finish();
             startActivity(getIntent());
         }
@@ -134,8 +139,9 @@ public class MainActivity extends AppCompatActivity {
      * MainActivity
      */
     protected void manageCurrentAppLanguage() {
-        this.languageManager.manageCurrentAppLanguage();
+        //this.languageManager.manageCurrentAppLanguage(this);
         this.currentActivityLanguage = this.languageManager.getCurrentLanguageCodeFromPreferences();
+        this.changeCurrentLocale(this.currentActivityLanguage );
     }
 
 
@@ -198,5 +204,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+
+    /**
+     * Método que modifica el idioma de la aplicación.
+     */
+    private void changeCurrentLocale(String pCurrentLanguagePreference) {
+        Locale newLocale = new Locale(pCurrentLanguagePreference);
+        Locale.setDefault(newLocale);
+        Configuration configuration = this.getResources().getConfiguration();
+        configuration.setLocale(newLocale);
+        configuration.setLayoutDirection(newLocale);
+
+        Resources resources = this.getResources();
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
     }
 }

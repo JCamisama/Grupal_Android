@@ -89,12 +89,12 @@ public class CustomAdapter extends BaseAdapter {
         String type = this.context.getString(R.string.tipo);
         String texto;
 
-        if (LanguageManager.getInstance(this.context).getCurrentLanguageCodeFromPreferences().equals("en")){
+        if (LanguageManager.getInstance(null).getCurrentLanguageCodeFromPreferences().equals("en")){
 
             texto = type+": " + fran.getType_EN();
             tipo.setText(texto);
 
-        } else if (LanguageManager.getInstance(this.context).getCurrentLanguageCodeFromPreferences().equals("es")){
+        } else if (LanguageManager.getInstance(null).getCurrentLanguageCodeFromPreferences().equals("es")){
 
             texto = type+": " + fran.getType_ES();
             tipo.setText(texto);

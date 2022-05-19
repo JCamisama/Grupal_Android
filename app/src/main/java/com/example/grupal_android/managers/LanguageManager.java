@@ -1,10 +1,10 @@
 package com.example.grupal_android.managers;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
 import com.example.grupal_android.preferencias.CustomPreferences;
@@ -17,18 +17,18 @@ import java.util.Locale;
 public class LanguageManager {
 
     private static LanguageManager instance = null;
-    private Context myContext = null;
+    private AppCompatActivity myActivity = null;
     public static final String defaultLanguage = "en";
 
     /*** Singleton Pattern ***/
-    private LanguageManager(Context pContext) {
-        this.myContext = pContext;
-        this.changeCurrentLocale(defaultLanguage);
+    private LanguageManager(AppCompatActivity pMyActivity) {
+        this.myActivity = pMyActivity;
+        this.changeCurrentLocale( pMyActivity, defaultLanguage);
     }
 
-    public static synchronized LanguageManager getInstance(Context pContext) {
+    public static synchronized LanguageManager getInstance(AppCompatActivity pMyActivity) {
         if (LanguageManager.instance == null) {
-            LanguageManager.instance = new LanguageManager(pContext);
+            LanguageManager.instance = new LanguageManager(pMyActivity);
         }
 
         return LanguageManager.instance;
@@ -36,38 +36,18 @@ public class LanguageManager {
     /*************************/
 
 
-    /**
-     * Determina si el idioma ha cambiado. De haberlo hecho, cambia el Locale de la
-     * aplicación
-     */
-    public boolean manageCurrentAppLanguage() {
-        boolean hasLanguageChanged = false;
-
-        Locale locale = this.myContext.getResources().getConfiguration().locale;
-
-        String currentSetLanguage = locale.getLanguage();
-        String currentLanguagePreferenceCode = this.getCurrentLanguageCodeFromPreferences();
-
-        hasLanguageChanged = !currentSetLanguage.equals(currentLanguagePreferenceCode);
-        if (hasLanguageChanged) {
-            this.changeCurrentLocale(currentLanguagePreferenceCode);
-        }
-
-        return hasLanguageChanged;
-    }
-
 
     /**
      * Obtiene el idioma actual de la aplicación.
      */
     public String getCurrentLanguageCodeFromPreferences() {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.myContext);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.myActivity);
         String languagePreferenceName = CustomPreferences.languagePreferenceName;
         String currentLanguagePreference = prefs.getString(languagePreferenceName, defaultLanguage);
 
         if (currentLanguagePreference == null || currentLanguagePreference =="") {
             currentLanguagePreference = defaultLanguage;
-            CustomPreferencesManager.getInstance(this.myContext).setStringInPreferences(
+            CustomPreferencesManager.getInstance(this.myActivity).setStringInPreferences(
                     languagePreferenceName,
                     "english"
             );
@@ -80,14 +60,14 @@ public class LanguageManager {
     /**
      * Método que modifica el idioma de la aplicación.
      */
-    private void changeCurrentLocale(String pCurrentLanguagePreference) {
+    private void changeCurrentLocale(AppCompatActivity pMyActivity, String pCurrentLanguagePreference) {
         Locale newLocale = new Locale(pCurrentLanguagePreference);
         Locale.setDefault(newLocale);
-        Configuration configuration = this.myContext.getResources().getConfiguration();
+        Configuration configuration = pMyActivity.getResources().getConfiguration();
         configuration.setLocale(newLocale);
         configuration.setLayoutDirection(newLocale);
 
-        Resources resources = this.myContext.getResources();
+        Resources resources = pMyActivity.getResources();
         resources.updateConfiguration(configuration, resources.getDisplayMetrics());
     }
 
