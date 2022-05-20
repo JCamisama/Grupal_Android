@@ -22,7 +22,7 @@
         android:label="ShopWorld"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Grupal_Android"
+        android:theme="@style/Theme.Grupal_Android_Light"
         android:usesCleartextTraffic="true">
         <meta-data
             android:name="com.google.android.geo.API_KEY"

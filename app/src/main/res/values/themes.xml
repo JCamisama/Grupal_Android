@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Grupal_Android" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.Grupal_Android_Light" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
         <!-- Customize your theme here. -->
     </style>
